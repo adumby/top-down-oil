@@ -1,0 +1,17 @@
+link,coef,value,se,r2,nobs,sample,p
+Breakeven T5YIEM,long-run pp per +10% Brent,0.0601,0.0172,0.3667,238,2004-01..2025-12,
+Breakeven T10YIEM,long-run pp per +10% Brent,0.0616,0.0132,0.3158,238,2004-01..2025-12,
+reaction,lag,0.9239,0.0103,0.9839,95,2016-01..2025-12,0.0
+reaction,core_yoy,0.1013,0.0196,0.9839,95,2016-01..2025-12,0.0
+reaction,unrate,-0.0077,0.0596,0.9839,95,2016-01..2025-12,0.8978
+reaction_headline,lag,0.9448,0.0116,0.984,95,2016-01..2025-12,0.0
+reaction_headline,core_yoy,0.0749,0.011,0.984,95,2016-01..2025-12,0.0
+reaction_headline,unrate,0.0208,0.0506,0.984,95,2016-01..2025-12,0.6817
+reaction_changes,d_core_yoy,-0.0111,0.2985,0.498,311,1991-01..2025-12,0.9704
+reaction_changes,d_unrate,-1.4703,0.2024,0.498,311,1991-01..2025-12,0.0
+passthrough,d_gs2,0.6981,0.0605,0.5372,265,2003-02..2025-12,0.0
+passthrough,d_be10,-0.5033,0.1138,0.5372,265,2003-02..2025-12,0.0
+equity,d_real_bp,-0.0986,0.0262,0.1575,116,2016-01..2025-12,0.0002
+equity_full,d_real_bp,-0.0418,0.0286,0.0323,271,2003-02..2025-12,0.144
+reaction,long-run core_yoy (b/(1-rho)),1.3301,,0.9839,95,2016-01..2025-12,
+reaction_headline,long-run headline_yoy (b/(1-rho)),1.3556,,0.984,95,2016-01..2025-12,

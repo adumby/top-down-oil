@@ -1,0 +1,116 @@
+# ---------------------------------------------------------------------------
+# oil-inflation-model configuration
+# Every number the pipeline uses lives here, so a run is fully described by
+# this file plus data/raw. Dates are "YYYY-MM" (monthly, first of month).
+# ---------------------------------------------------------------------------
+
+data_dir: data/raw
+output_dir: outputs
+
+# ---- Inflation block: ARDL(p, q) of monthly inflation on Brent log changes --
+estimation:
+  start: "1988-06"            # Brent (MCOILBRENTEU) starts 1987-05; 12 lags + 1 diff
+  end: "2025-12"              # 2026 is held out and used as a live backtest
+  exclude:                    # months dropped from estimation (not from history)
+    - ["2020-03", "2021-06"]  # Covid lockdown/reopening price distortions
+  p: 6                        # own lags of monthly inflation (chosen out of sample, see paper sec. 5)
+  q: 12                       # Brent lags 0..q
+  hac_lags: 12                # Newey-West bandwidth for standard errors
+  anchor:                     # long-run level the forecast converges to with oil flat
+    mode: breakeven           # breakeven | sample (sample = estimated intercept)
+    series: T10YIEM           # 10y breakeven = market expected CPI inflation
+    wedge_months: 120         # trailing window for the average CPI-PCE gap
+    targets:                  # target: CPI counterpart used for the gap (null = CPI itself)
+      headline_cpi: null
+      core_cpi: null
+      headline_pce: headline_cpi
+      core_pce: core_cpi
+
+driver:
+  id: MCOILBRENTEU            # Brent, monthly average, $/bbl (EIA via FRED)
+  label: Brent
+
+# Series modelled. kind=index -> MoM = 100*dlog(index); kind=pct -> BEA % change
+targets:
+  headline_cpi:  {source: fred, id: CPIAUCSL, kind: index, label: "Headline CPI"}
+  core_cpi:      {source: fred, id: CPILFESL, kind: index, label: "Core CPI"}
+  headline_pce:  {source: fred, id: PCEPI,    kind: index, label: "Headline PCE"}
+  core_pce:      {source: fred, id: PCEPILFE, kind: index, label: "Core PCE"}
+  energy_pce:    {source: bea, column: "Energy goods and services5",      kind: pct, label: "PCE energy goods & services"}
+  gasoline_pce:  {source: bea, column: "Gasoline and other energy goods", kind: pct, label: "PCE gasoline & other energy goods"}
+  transport_pce: {source: bea, column: "Transportation services",         kind: pct, label: "PCE transportation services"}
+
+# ---- Forecast / scenario engine -------------------------------------------
+forecast:
+  origin: "2026-09"           # last month of actual data
+  horizon: 12                 # months simulated (Oct-2026 .. Sep-2027)
+  residual_mode: fades        # central case: fades | decay | persists (fades wins out of sample)
+  residual_window: 6          # months of recent one-step errors averaged
+  residual_halflife: 6        # months, for residual_mode = decay
+  bootstrap_reps: 1000        # parameter + shock draws for the fan charts
+  block_length: 6             # moving-block bootstrap of residuals
+  bands: [10, 90]             # percentile band reported
+  seed: 20261104
+
+# Brent paths. Steps apply from the given month onward.
+#   mult  = multiple of the origin (Sep-2026) Brent level
+#   level = $/bbl
+#   glide = move linearly (in logs) to `level` between `from` and `to`
+scenarios:
+  flat_114:       {label: "Brent flat at Sep-26 level ($114)", steps: []}
+  flat_105:       {label: "Brent flat at $105", steps: [{from: "2026-10", level: 105}]}
+  up20_nov:       {label: "+20% in Nov, held",  steps: [{from: "2026-11", mult: 1.20}]}
+  up20_apr:       {label: "+20% in Apr, held",  steps: [{from: "2027-04", mult: 1.20}]}
+  down25_nov:     {label: "-25% in Nov, held",  steps: [{from: "2026-11", mult: 0.75}]}
+  down25_apr:     {label: "-25% in Apr, held",  steps: [{from: "2027-04", mult: 0.75}]}
+  up_down_up:     {label: "+25% Nov, back Jan, +25% Apr", steps: [{from: "2026-11", mult: 1.25}, {from: "2027-01", mult: 1.00}, {from: "2027-04", mult: 1.25}]}
+  higher_longer:  {label: "Higher for longer ($125 from Nov)", steps: [{from: "2026-11", level: 125}]}
+  normalize_75:   {label: "War ends: glide to $75 by Jan", steps: [{from: "2026-10", to: "2027-01", glide: true, level: 75}]}
+
+central_scenario: flat_105
+
+# ---- Expectations, rates and equity block ---------------------------------
+rates:
+  breakeven:
+    ids: [T5YIEM, T10YIEM]    # market inflation compensation, monthly avg
+    sample: ["2004-01", "2025-12"]
+    exclude:
+      - ["2008-09", "2009-06"]  # TIPS liquidity crisis
+      - ["2020-03", "2021-06"]
+    oil_lags: 3
+  reaction:                   # market-implied Fed reaction function (partial-adjustment Taylor rule)
+    yield: GS2
+    sample: ["2016-01", "2025-12"]   # current framework incl. the 2022-23 hiking cycle
+    exclude:                  # effective lower bound: rates can't respond
+      - ["2020-03", "2022-03"]
+    window: 12                # lower-bound check: 12-month-change version
+    changes_sample: ["1990-01", "2025-12"]
+    exclude_long:
+      - ["2009-01", "2015-12"]
+      - ["2020-03", "2022-03"]
+  passthrough:                # how front-end and breakevens move 10y real
+    real: FII10
+    front: GS2
+    breakeven: T10YIEM
+    sample: ["2003-02", "2025-12"]
+    exclude:
+      - ["2008-09", "2009-06"]
+  equity:
+    file: market/XLK_daily.csv
+    real_yield: FII10
+    sample: ["2016-01", "2025-12"]   # regime where the real-yield link exists
+
+# ---- Robustness suite -----------------------------------------------------
+robustness:
+  lag_grid: {p: [1, 2, 3, 4, 6], q: [6, 9, 12, 15, 18]}
+  oos_first_origin: "2005-01"
+  oos_last_origin: "2024-12"
+  oos_horizon: 12
+  subsamples:
+    "1988-2007": ["1988-06", "2007-12"]
+    "2008-2019": ["2008-01", "2019-12"]
+    "2010-2025": ["2010-01", "2025-12"]
+  chow_break: "2008-01"
+  regime_sample: ["2010-01", "2025-12"]   # re-run scenarios with recent-regime coefficients
+  placebo_reps: 500
+  rolling_window_years: 12

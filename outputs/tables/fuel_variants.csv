@@ -1,0 +1,21 @@
+target,fuel,r2,lr10,lr10_se,oil_wald_p,actual_2026_pp,fuel_attributable_pp,share_pct
+headline_pce,Brent,0.5328,0.3415,0.0915,0.0,2.9168,1.2373,42.4195
+headline_pce,Retail gasoline,0.6677,0.4799,0.1502,0.0,2.9168,1.5354,52.6377
+headline_pce,Retail diesel,0.564,0.3978,0.1046,0.0,2.9168,1.8081,61.9892
+headline_pce,Jet fuel (Gulf),0.5229,0.2873,0.0593,0.0,2.9168,1.5563,53.3563
+headline_pce,PPI refined petroleum,0.5958,0.3396,0.1089,0.0,2.9168,1.6567,56.7982
+core_pce,Brent,0.3515,0.0948,0.067,0.002,2.4256,0.2278,9.3907
+core_pce,Retail gasoline,0.3392,0.1191,0.1427,0.2125,2.4256,0.1214,5.0062
+core_pce,Retail diesel,0.3384,0.0774,0.1152,0.1114,2.4256,0.221,9.1127
+core_pce,Jet fuel (Gulf),0.3493,0.0807,0.0662,0.0003,2.4256,0.2846,11.732
+core_pce,PPI refined petroleum,0.342,0.0944,0.1021,0.052,2.4256,0.1487,6.1289
+energy_pce,Brent,0.609,3.6171,0.3402,0.0,17.7621,17.0202,95.8232
+energy_pce,Retail gasoline,0.8475,6.0066,0.3236,0.0,17.7621,24.4807,137.8257
+energy_pce,Retail diesel,0.7,4.8705,0.2841,0.0,17.7621,28.11,158.2582
+energy_pce,Jet fuel (Gulf),0.6208,3.2271,0.2099,0.0,17.7621,22.1792,124.8682
+energy_pce,PPI refined petroleum,0.7335,4.2913,0.3124,0.0,17.7621,27.0884,152.5069
+transport_pce,Brent,0.1136,0.3826,0.1281,0.0001,8.2498,1.1773,14.27
+transport_pce,Retail gasoline,0.1309,0.7619,0.2671,0.0,8.2498,1.6335,19.8004
+transport_pce,Retail diesel,0.1504,0.7548,0.2737,0.0001,8.2498,2.4302,29.4577
+transport_pce,Jet fuel (Gulf),0.1562,0.4109,0.1437,0.0002,8.2498,2.0527,24.8817
+transport_pce,PPI refined petroleum,0.1211,0.4872,0.1647,0.0,8.2498,1.7587,21.3179
