@@ -1,0 +1,4 @@
+model,r2,r2_adj,actual_pp,fuel_pp,core_inflation_pp,own_and_const_pp,unexplained_pp
+Fuels only,0.2151,0.1088,8.2498,3.6897,0.0,0.5648,3.9953
+Core inflation only,0.1053,0.082,8.2498,0.0,4.9544,-2.3435,5.6389
+Fuels + core inflation,0.2616,0.1451,8.2498,3.1124,3.9699,-2.37,3.5375
