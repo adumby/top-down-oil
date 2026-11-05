@@ -35,10 +35,11 @@ robustness tests, scenarios and portfolio implications.
 git clone <this repo> && cd oil-inflation-model
 pip install -e ".[dev]"          # numpy, pandas, statsmodels, scipy, matplotlib, pyyaml, pytest
 python -m oilinfl                # full run, about 1 minute -> outputs/
-python -m pytest -q              # 26 tests
+python -m pytest -q              # 27 tests
 ```
 
 - **Quick check:** `python -m oilinfl --fast --skip-robustness` runs in about 5 seconds.
+- **Dashboard:** `streamlit run app.py` (reads `outputs/`).
 - **Make shortcuts:** `make run`, `make test`, `make data`.
 
 ## How it works
@@ -61,6 +62,7 @@ Brent / refined fuels ──► ARDL(6,12) inflation models ──► MoM path �
 | `src/oilinfl/anchor.py` | Replaces the intercept so forecasts converge to market inflation expectations |
 | `src/oilinfl/forecast.py` | Brent scenario paths, point forecasts, residual settings, bootstrap fan charts |
 | `src/oilinfl/rates.py` | Breakevens, Fed reaction function (estimated and hawkish), real-yield pass-through, XLK beta |
+| `src/oilinfl/sectors.py` | Sector-by-sector sensitivity of equities to the 10y real yield, and implied scenario moves |
 | `src/oilinfl/robustness.py` | Lag grid, out-of-sample tests with Diebold–Mariano, subsamples, Chow, asymmetry, placebo, 2026 backtest |
 | `src/oilinfl/diagnostics.py` | Refined-fuel drivers, transportation attribution, pass-through timing |
 | `src/oilinfl/pipeline.py` | Runs everything and writes `outputs/` |

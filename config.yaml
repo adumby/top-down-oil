@@ -99,6 +99,10 @@ rates:
     file: market/XLK_daily.csv
     real_yield: FII10
     sample: ["2016-01", "2025-12"]   # regime where the real-yield link exists
+  sectors:
+    file: market/sectors_daily.csv   # ten SPDR sector ETFs (XLK is added from XLK_daily.csv)
+    real_yield: FII10
+    sample: ["2016-01", "2025-12"]
 
 # ---- Robustness suite -----------------------------------------------------
 robustness:

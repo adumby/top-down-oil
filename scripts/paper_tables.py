@@ -140,3 +140,13 @@ rows = [{"Model": r.model, "Adj. R2": f(r.r2_adj), "Actual": f(r.actual_pp), "Fu
 print(md(pd.DataFrame(rows)))
 print("\nanchors:", {k: (round(v, 2) if v is not None else None) for k, v in R["anchors"].items()})
 print("rates latest:", R["rates_latest"])
+
+print("\n## Sector sensitivity to the 10y real yield (% move per +50bp)\n")
+sb = pd.read_csv(T / "sector_betas.csv")
+raw, rel = sb[sb.version == "raw"].set_index("sector"), sb[sb.version == "relative"].set_index("sector")
+rows = []
+for k in raw.sort_values("pct_per_50bp").index:
+    rows.append({"Sector": raw.loc[k, "name"], "Raw": f"{raw.loc[k, 'pct_per_50bp']:+.1f} ({raw.loc[k, 'pct_per_50bp_se']:.1f})",
+                 "Raw R2": f(raw.loc[k, "r2"]), "Relative to all sectors": f"{rel.loc[k, 'pct_per_50bp']:+.1f} ({rel.loc[k, 'pct_per_50bp_se']:.1f})",
+                 "Relative p": f(rel.loc[k, "p"], 3), "Months": int(raw.loc[k, "nobs"])})
+print(md(pd.DataFrame(rows)))

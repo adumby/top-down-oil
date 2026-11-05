@@ -17,6 +17,7 @@ from .data import annualized_from_logpct, brent_logchange, load, yoy_from_logpct
 from .forecast import bootstrap_forecast, build_path, carry_path, point_forecast, recent_error
 from .model import fit_ardl, months_to_share
 from .rates import fit_rates, project
+from .sectors import fit_sectors, read_sectors, scenario_impacts
 
 MODES = ("fades", "decay", "persists")
 HEADLINE_KEYS = ["headline_cpi", "core_cpi", "headline_pce", "core_pce"]
@@ -192,6 +193,20 @@ def run(config: str | Path = "config.yaml", root: str | Path = ".", skip_robustn
                                   for s, df in proj.items()}
     results["rates_scenarios_mid"] = {s: {c: round(float(df[c].iloc[5]), 3) for c in df.columns if c != "scenario"}
                                       for s, df in proj.items()}
+
+    # history of the rate series (for charts) and the sector links
+    lv[["T5YIEM", "T10YIEM", "FII5", "FII10", "GS2", "FEDFUNDS"]].loc["2016-01":].round(3).to_csv(
+        tdir / "rates_history.csv", index_label="date")
+    sc = cfg["rates"].get("sectors")
+    sfile = Path(root) / "data" / "raw" / sc["file"] if sc else None
+    if sc and sfile.exists():
+        _log("sector sensitivities to real yields")
+        px = read_sectors(sfile, ds.xlk_daily)
+        sec = fit_sectors(px, lv[sc["real_yield"]], sc["sample"][0], sc["sample"][1], [["2020-03", "2020-06"]])
+        sec.round(5).to_csv(tdir / "sector_betas.csv", index=False)
+        simp = pd.concat([scenario_impacts(sec, ptab.rename_axis("date").reset_index(), origin_rates["FII10"], v) for v in ("raw", "relative")])
+        simp.round(3).to_csv(tdir / "sector_scenarios.csv", index=False)
+        results["sector_betas"] = sec.round(4).to_dict(orient="records")
 
     # ------------------------------------------------- supporting work --
     _log("supporting diagnostics (refined fuels, transportation, timing)")

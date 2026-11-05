@@ -80,3 +80,17 @@ def test_pipeline_smoke(cfg, tmp_path):
     assert (out / "figures" / "fan_yoy.png").exists()
     assert json.loads((out / "results.json").read_text())["brent_origin"] == pytest.approx(114.16)
     assert res["anchors"]["headline_cpi"] == pytest.approx(2.35)
+
+
+def test_sector_betas_shipped_and_consistent(cfg, ds):
+    """Sector regressions reproduce the XLK link and carry the expected signs."""
+    from oilinfl.sectors import fit_sectors, read_sectors
+    sc = cfg["rates"]["sectors"]
+    px = read_sectors(ROOT / "data" / "raw" / sc["file"], ds.xlk_daily)
+    out = fit_sectors(px, ds.levels[sc["real_yield"]], sc["sample"][0], sc["sample"][1], [["2020-03", "2020-06"]])
+    raw = out[out.version == "raw"].set_index("sector")
+    assert len(raw) == 11
+    assert raw.loc["XLK", "beta_per_bp"] == pytest.approx(-0.0985, abs=0.003)   # same as the stand-alone XLK link
+    assert raw.loc["XLRE", "beta_per_bp"] < raw.loc["XLF", "beta_per_bp"]       # real estate is the most rate-sensitive
+    rel = out[out.version == "relative"]
+    assert abs(rel.groupby("sector").beta_per_bp.first().mean()) < 0.01        # relative betas net to ~0 across sectors

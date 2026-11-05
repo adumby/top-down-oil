@@ -73,7 +73,7 @@ detail and a daily XLK price file. `data/README.md` lists every file.
 | Oil | Brent monthly average (MCOILBRENTEU) | from 1987-05 |
 | Refined products | Retail gasoline, retail diesel, Gulf jet fuel, PPI refined petroleum, 3-2-1 crack spread | from 1990–1995 |
 | Expectations and rates | 5y and 10y breakevens, 5y and 10y TIPS yields, 2y Treasury, fed funds, unemployment | 2003+ (TIPS), 1990+ (2y) |
-| Equity | XLK daily close | 1998+ |
+| Equity | XLK and ten other SPDR sector ETFs, daily close | 1998+ (XLRE 2015, XLC 2018) |
 
 **How the data were formatted, and why.**
 
@@ -447,6 +447,55 @@ is the Fed-relevant risk to the disinflation thesis.
 5. **The October data are a warning.** The 10-year real yield fell 28bp during October while
    XLK fell about 9%. Real yields are not what is driving tech right now.
 
+### 7.3 Which sectors are exposed to real yields
+
+The XLK link generalizes to all eleven SPDR sector ETFs. For each, the monthly change in the
+(average) price is regressed on the monthly change in the 10-year real yield, 2016–2025, with
+Covid months excluded and HAC errors, the same treatment as XLK. Two versions are shown. *Raw*
+is the sector's own return and includes the market. *Relative* subtracts the equal-weighted
+average of the eleven sectors, which isolates rate sensitivity net of the market. Coefficients
+are % per +50bp in the 10-year real yield (standard errors in parentheses).
+
+| Sector | Raw | Raw R² | Relative to all sectors | Relative p | Months |
+|---|---|---|---|---|---|
+| Real estate | -6.3 (1.1) | 0.33 | -3.1 (0.8) | 0.000 | 116 |
+| Technology | -4.9 (1.3) | 0.16 | -1.8 (0.8) | 0.035 | 116 |
+| Utilities | -4.4 (1.0) | 0.20 | -1.3 (0.9) | 0.180 | 116 |
+| Consumer discretionary | -4.1 (1.4) | 0.10 | -0.9 (0.9) | 0.316 | 116 |
+| Communication services | -3.9 (1.3) | 0.15 | -0.5 (0.9) | 0.595 | 86 |
+| Materials | -3.5 (0.8) | 0.10 | -0.4 (0.4) | 0.388 | 116 |
+| Consumer staples | -3.3 (0.9) | 0.20 | -0.1 (1.0) | 0.903 | 116 |
+| Health care | -3.1 (0.5) | 0.15 | +0.1 (0.9) | 0.930 | 116 |
+| Industrials | -3.1 (1.2) | 0.09 | +0.1 (0.6) | 0.833 | 116 |
+| Financials | -1.4 (1.5) | 0.01 | +1.8 (0.9) | 0.047 | 116 |
+| Energy | +2.8 (1.3) | 0.03 | +6.0 (1.0) | 0.000 | 116 |
+
+(`scripts/paper_tables.py` regenerates this table from `outputs/tables/sector_betas.csv`.)
+
+**What it says.**
+
+1. **Most sectors fall when real yields rise.** Ten of eleven have negative raw betas. Real
+   estate, technology and utilities are hit hardest, the long-duration or rate-financed
+   sectors. Real estate's is the largest and has the best fit (R² 0.33).
+2. **Net of the market, only four sectors are distinguishable from average.** Real estate and
+   technology are more exposed than average, financials and energy less. Staples, health care,
+   industrials, materials and communication services are statistically average once the market
+   move is removed, so their raw betas mostly reflect the market falling with real yields.
+3. **Energy is the natural offset.** It has a positive beta because energy stocks rise with
+   oil, and oil moves breakevens and yields. This is the one place where the sector link and
+   the oil thesis are mechanically connected, and it is a reminder that the regression does not
+   identify rate effects separately from the oil shocks that move both.
+4. **Size.** In the model's scenarios the 10-year real yield falls 18bp (core rule) to 25bp
+   (hawkish rule) by Sep-27 under flat $105 oil, which implies raw gains of about +1% to +3%
+   for most sectors (real estate +2.3% to +3.2%, technology +1.8% to +2.5%) and about -1% for
+   energy. `outputs/tables/sector_scenarios.csv` has every scenario. These are small next to
+   the monthly volatility of any sector.
+
+**Caveats.** The betas are comovement, not causal effects: stocks and yields respond to the
+same growth and inflation news. R² is below 0.35 everywhere, the link is unstable across
+regimes (section 9), and the monthly-average prices smooth the data and can understate
+short-run sensitivity. XLC and XLRE have shorter histories (XLC starts mid-2018).
+
 ## 8. Implications for the thesis and the Top Down fund
 
 *Model-based reasoning for an investment club. It is not investment advice.*
@@ -503,7 +552,7 @@ energy.
 ```bash
 pip install -e ".[dev]"
 python -m oilinfl                      # full run (~1 min): tables, figures, results.json
-python -m pytest -q                    # 26 tests
+python -m pytest -q                    # 27 tests
 python scripts/update_data.py          # refresh FRED data, then move forecast.origin in config.yaml
 python scripts/paper_tables.py         # regenerate this paper's tables
 ```
@@ -521,6 +570,8 @@ python scripts/paper_tables.py         # regenerate this paper's tables
 | `scenarios_long.csv` | Every scenario × series × residual setting × month: MoM, YoY, 3m/6m annualized, bands |
 | `scenario_summary.csv`, `scenarios_yoy_wide.csv`, `scenarios_mom_wide.csv` | Summaries and pivots |
 | `rates_models.csv`, `rates_scenarios.csv` | Expectations/rates/equity links and projections |
+| `rates_history.csv` | Monthly history of breakevens, 2y, real yields and fed funds since 2016 (for charts) |
+| `sector_betas.csv`, `sector_scenarios.csv` | Sector sensitivities to the 10y real yield and implied scenario moves |
 | `robust_*.csv`, `backtest_2026.csv` | Lag grid, out-of-sample tests, subsamples, Chow, asymmetry, placebo, Covid, regime |
 | `fuel_variants.csv`, `transport_attribution.csv` | Refined-product and transportation analysis |
 | `history.csv` | Actual MoM, YoY, 3m and 6m annualized for every series since 2023 |

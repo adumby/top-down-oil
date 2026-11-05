@@ -230,3 +230,19 @@
 
 anchors: {'headline_cpi': 2.35, 'core_cpi': 2.35, 'headline_pce': 1.96, 'core_pce': 2.07, 'energy_pce': None, 'gasoline_pce': None, 'transport_pce': None}
 rates latest: {'T5YIEM': ['2026-09', 2.36], 'T10YIEM': ['2026-10', 2.35], 'GS2': ['2026-10', 4.74], 'FII10': ['2026-10', 2.78], 'FII5': ['2026-09', 2.44], 'FEDFUNDS': ['2026-10', 3.88]}
+
+## Sector sensitivity to the 10y real yield (% move per +50bp)
+
+| Sector | Raw | Raw R2 | Relative to all sectors | Relative p | Months |
+|---|---|---|---|---|---|
+| Real estate | -6.3 (1.1) | 0.33 | -3.1 (0.8) | 0.000 | 116 |
+| Technology | -4.9 (1.3) | 0.16 | -1.8 (0.8) | 0.035 | 116 |
+| Utilities | -4.4 (1.0) | 0.20 | -1.3 (0.9) | 0.180 | 116 |
+| Consumer discretionary | -4.1 (1.4) | 0.10 | -0.9 (0.9) | 0.316 | 116 |
+| Communication services | -3.9 (1.3) | 0.15 | -0.5 (0.9) | 0.595 | 86 |
+| Materials | -3.5 (0.8) | 0.10 | -0.4 (0.4) | 0.388 | 116 |
+| Consumer staples | -3.3 (0.9) | 0.20 | -0.1 (1.0) | 0.903 | 116 |
+| Health care | -3.1 (0.5) | 0.15 | +0.1 (0.9) | 0.930 | 116 |
+| Industrials | -3.1 (1.2) | 0.09 | +0.1 (0.6) | 0.833 | 116 |
+| Financials | -1.4 (1.5) | 0.01 | +1.8 (0.9) | 0.047 | 116 |
+| Energy | +2.8 (1.3) | 0.03 | +6.0 (1.0) | 0.000 | 116 |
