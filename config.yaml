@@ -67,6 +67,10 @@ scenarios:
   higher_longer:  {label: "Higher for longer ($125 from Nov)", steps: [{from: "2026-11", level: 125}]}
   normalize_75:   {label: "War ends: glide to $75 by Jan", steps: [{from: "2026-10", to: "2027-01", glide: true, level: 75}]}
 
+# Flat-Brent grid for the app's oil slider: Brent held at each level from the first forecast month
+# (point forecasts only, no bootstrap).
+oil_grid: {from: 60, to: 140, step: 5}
+
 central_scenario: flat_105
 
 # ---- Expectations, rates and equity block ---------------------------------

@@ -35,11 +35,11 @@ robustness tests, scenarios and portfolio implications.
 git clone <this repo> && cd oil-inflation-model
 pip install -e ".[dev]"          # numpy, pandas, statsmodels, scipy, matplotlib, pyyaml, pytest
 python -m oilinfl                # full run, about 1 minute -> outputs/
-python -m pytest -q              # 27 tests
+python -m pytest -q              # 28 tests
 ```
 
 - **Quick check:** `python -m oilinfl --fast --skip-robustness` runs in about 5 seconds.
-- **Dashboard:** `streamlit run app.py` (reads `outputs/`).
+- **Dashboard:** `streamlit run app.py` (reads `outputs/`). The *Oil calculator* tab takes any flat Brent price from $60 to $140 and returns inflation, rates, the real yield and sector effects.
 - **Make shortcuts:** `make run`, `make test`, `make data`.
 
 ## How it works

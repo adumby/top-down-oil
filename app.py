@@ -3,8 +3,10 @@
     streamlit run app.py
 Re-run `python -m oilinfl` first if you change config.yaml or the data.
 """
+import json
 from pathlib import Path
 
+import altair as alt
 import pandas as pd
 import streamlit as st
 
@@ -15,6 +17,19 @@ LAB = {"headline_cpi": "Headline CPI", "core_cpi": "Core CPI", "headline_pce": "
 SC = {"flat_114": "Brent flat $114", "flat_105": "Brent flat $105", "up20_nov": "+20% in Nov", "up20_apr": "+20% in Apr",
       "down25_nov": "-25% in Nov", "down25_apr": "-25% in Apr", "up_down_up": "Up-down-up", "higher_longer": "$125 from Nov",
       "normalize_75": "Glide to $75"}
+
+SEC = {"XLK": "Technology", "XLY": "Consumer discretionary", "XLP": "Consumer staples", "XLE": "Energy",
+       "XLF": "Financials", "XLV": "Health care", "XLI": "Industrials", "XLB": "Materials", "XLU": "Utilities",
+       "XLRE": "Real estate", "XLC": "Communication services"}
+def sector_bars(d, order, xtitle):
+    bars = (alt.Chart(d).mark_bar().encode(
+        y=alt.Y("Sector:N", sort=order, title=None),
+        x=alt.X("effect:Q", title=xtitle),
+        color=alt.condition(alt.datum.effect > 0, alt.value("#2a9d8f"), alt.value("#e76f51")),
+        tooltip=["Sector:N", alt.Tooltip("effect:Q", format=".2f"), alt.Tooltip("p:Q", format=".3f")]))
+    err = alt.Chart(d).mark_rule(color="#888").encode(y=alt.Y("Sector:N", sort=order), x="lo:Q", x2="hi:Q")
+    return (bars + err).properties(height=340)
+
 
 st.set_page_config(page_title="Oil → inflation model", layout="wide")
 st.title("Oil shock → inflation → real yields")
@@ -30,7 +45,7 @@ hist, yoy, mom, summ, rates = (load("history.csv"), load("scenarios_yoy_wide.csv
                                load("scenario_summary.csv"), load("rates_scenarios.csv"))
 hist["date"] = pd.to_datetime(hist["date"])
 
-tab1, tab2, tab3, tab4 = st.tabs(["Scenarios", "Rates and XLK", "Robustness", "Charts"])
+tab1, tab2, tab5, tab3, tab4 = st.tabs(["Scenarios", "Rates and XLK", "Oil calculator", "Robustness", "Charts"])
 
 with tab1:
     c1, c2, c3 = st.columns(3)
@@ -53,11 +68,6 @@ with tab1:
     st.dataframe(d.round(2), width="stretch")
 
 with tab2:
-    import altair as alt
-
-    SEC = {"XLK": "Technology", "XLY": "Consumer discretionary", "XLP": "Consumer staples", "XLE": "Energy",
-           "XLF": "Financials", "XLV": "Health care", "XLI": "Industrials", "XLB": "Materials", "XLU": "Utilities",
-           "XLRE": "Real estate", "XLC": "Communication services"}
     rh = load("rates_history.csv")
     rh["date"] = pd.to_datetime(rh["date"])
     rh = rh.set_index("date")
@@ -110,21 +120,22 @@ with tab2:
                "HAC errors. Comovement, not causation: stocks and yields respond to the same news.")
     sb = load("sector_betas.csv")
     sb["Sector"] = sb.sector.map(SEC)
-    ver = st.radio("Return measure", ["Raw sector return", "Relative to the all-sector average"], horizontal=True)
+    k1, k2, k3 = st.columns([1.3, 1.3, 1.4])
+    direction = k1.radio("Direction", ["Real yields fall", "Real yields rise"], horizontal=True)
+    size = k2.slider("Size of move (bp)", 10, 150, 50, 10)
+    ver = k3.radio("Return measure", ["Raw sector return", "Relative to the all-sector average"])
+    sign = -1.0 if direction == "Real yields fall" else 1.0
     v = "raw" if ver.startswith("Raw") else "relative"
     d = sb[sb.version == v].copy()
-    d["lo"], d["hi"] = d.pct_per_50bp - 1.96 * d.pct_per_50bp_se, d.pct_per_50bp + 1.96 * d.pct_per_50bp_se
-    order = d.sort_values("pct_per_50bp").Sector.tolist()
-    bars = (alt.Chart(d).mark_bar().encode(
-        y=alt.Y("Sector:N", sort=order, title=None),
-        x=alt.X("pct_per_50bp:Q", title="% move for a +50bp rise in the 10y real yield"),
-        color=alt.condition(alt.datum.pct_per_50bp > 0, alt.value("#2a9d8f"), alt.value("#e76f51")),
-        tooltip=["Sector:N", alt.Tooltip("pct_per_50bp:Q", format=".2f"), alt.Tooltip("p:Q", format=".3f"), "nobs:Q"]))
-    err = alt.Chart(d).mark_rule(color="#888").encode(y=alt.Y("Sector:N", sort=order), x="lo:Q", x2="hi:Q")
-    st.altair_chart((bars + err).properties(height=340), width="stretch")
-    tbl = d.set_index("Sector")[["pct_per_50bp", "pct_per_50bp_se", "p", "r2", "nobs", "sample"]]
-    tbl.columns = ["% per +50bp", "Std. error", "p-value", "R2", "Months", "Sample"]
-    st.dataframe(tbl.sort_values("% per +50bp").round(3), width="stretch")
+    d["effect"] = d.beta_per_bp * sign * size
+    d["se"] = d.se_per_bp * size
+    d["lo"], d["hi"] = d.effect - 1.96 * d.se, d.effect + 1.96 * d.se
+    order = d.sort_values("effect", ascending=False).Sector.tolist()
+    st.altair_chart(sector_bars(d, order, f"% move if the 10y real yield {'falls' if sign < 0 else 'rises'} {size}bp"),
+                    width="stretch")
+    tbl = d.set_index("Sector")[["effect", "se", "p", "r2", "nobs", "sample"]]
+    tbl.columns = ["% move", "Std. error", "p-value", "R2", "Months", "Sample"]
+    st.dataframe(tbl.sort_values("% move", ascending=False).round(3), width="stretch")
 
     st.subheader("Implied sector moves in the selected scenario")
     si = load("sector_scenarios.csv")
@@ -134,6 +145,56 @@ with tab2:
     st.caption(f"Model change in the 10y real yield by Sep-27: core rule {dr['core rule']:+.0f}bp, hawkish rule "
                f"{dr['hawkish']:+.0f}bp. Implied move = sector beta x that change; it ignores every other driver of stocks.")
     st.dataframe(pv.round(2).rename(columns={"core rule": "Core rule, %", "hawkish": "Hawkish rule, %"}), width="stretch")
+
+with tab5:
+    grid = load("oil_grid.csv").set_index("brent")
+    gs = load("oil_grid_sectors.csv")
+    R = json.loads((Path(__file__).parent / "outputs" / "results.json").read_text())
+    org = R["rates_origin"]
+    st.write("Pick a Brent price held flat from November. The model gives inflation, rates and the real yield for that "
+             "price, then converts the real-yield change into sector moves. Brent was about $114 in September.")
+    st.session_state.setdefault("brent", 105)
+    q = st.columns([1, 1, 1, 4])
+    for col, lvl in zip(q[:3], (115, 90, 75)):
+        col.button(f"${lvl}", on_click=lambda l=lvl: st.session_state.update(brent=l), width="stretch")
+    brent = st.slider("Brent ($/bbl), flat from November", int(grid.index.min()), int(grid.index.max()), step=5, key="brent")
+    g = grid.loc[brent]
+    st.subheader(f"Brent flat at ${brent}: Sep-27")
+    m = st.columns(4)
+    m[0].metric("Headline CPI YoY", f"{g.headline_cpi_yoy_sep27:.1f}%")
+    m[1].metric("Core CPI YoY", f"{g.core_cpi_yoy_sep27:.1f}%")
+    m[2].metric("Headline PCE YoY", f"{g.headline_pce_yoy_sep27:.1f}%")
+    m[3].metric("Core PCE YoY", f"{g.core_pce_yoy_sep27:.1f}%")
+    rule = st.radio("Fed reaction", ["core rule", "hawkish"], horizontal=True,
+                    format_func=lambda s: "Fed follows core PCE (estimated)" if s == "core rule" else "Fed reacts to headline (hawkish)")
+    fii = g.FII10 if rule == "core rule" else g.FII10_hawk
+    gs2 = g.GS2 if rule == "core rule" else g.GS2_hawk
+    n = st.columns(4)
+    n[0].metric("10y real yield", f"{fii:.2f}%", f"{100 * (fii - org['FII10']):+.0f}bp vs Sep-26", delta_color="off")
+    n[1].metric("2y yield", f"{gs2:.2f}%", f"{100 * (gs2 - org['GS2']):+.0f}bp vs Sep-26", delta_color="off")
+    n[2].metric("10y breakeven", f"{g.T10YIEM:.2f}%", f"{100 * (g.T10YIEM - org['T10YIEM']):+.0f}bp vs Sep-26", delta_color="off")
+    n[3].metric("5y breakeven", f"{g.T5YIEM:.2f}%", f"{100 * (g.T5YIEM - org['T5YIEM']):+.0f}bp vs Sep-26", delta_color="off")
+
+    st.subheader("Implied sector moves from the real-yield change")
+    ver2 = st.radio("Return measure ", ["Raw sector return", "Relative to the all-sector average"], horizontal=True, key="v2")
+    v2 = "raw" if ver2.startswith("Raw") else "relative"
+    d2 = gs[(gs.brent == brent) & (gs.rule == rule) & (gs.version == v2)].copy()
+    d2["Sector"] = d2.sector.map(SEC)
+    sbp = load("sector_betas.csv")
+    pmap = sbp[sbp.version == v2].set_index("sector")["p"]
+    d2["effect"] = d2.implied_pct
+    d2["p"] = d2.sector.map(pmap)
+    d2["lo"] = d2["hi"] = d2.effect
+    order2 = d2.sort_values("effect", ascending=False).Sector.tolist()
+    st.altair_chart(sector_bars(d2, order2, "implied % move through the real-yield channel only"), width="stretch")
+    st.caption("Implied move = sector beta x the model's change in the 10y real yield (Sep-26 to Sep-27). It covers only "
+               "the real-yield channel; earnings, growth and everything else are left out, and the betas explain 10-35% of "
+               "monthly moves at best.")
+    st.dataframe(grid.loc[[75, 90, 105, 115]][["headline_cpi_yoy_sep27", "core_cpi_yoy_sep27", "headline_pce_yoy_sep27",
+                                                 "core_pce_yoy_sep27", "FII10", "FII10_hawk"]].round(2).rename(
+        columns={"headline_cpi_yoy_sep27": "Headline CPI", "core_cpi_yoy_sep27": "Core CPI", "headline_pce_yoy_sep27": "Headline PCE",
+                 "core_pce_yoy_sep27": "Core PCE", "FII10": "10y real (core rule)", "FII10_hawk": "10y real (hawkish)"}),
+        width="stretch")
 
 with tab3:
     st.subheader("Pass-through stability (long-run % per +10% Brent)")

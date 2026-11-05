@@ -1,0 +1,749 @@
+brent,rule,version,sector,d_real_bp,implied_pct
+60,core rule,raw,XLK,-10.0,0.985
+60,core rule,raw,XLY,-10.0,0.821
+60,core rule,raw,XLP,-10.0,0.659
+60,core rule,raw,XLE,-10.0,-0.56
+60,core rule,raw,XLF,-10.0,0.271
+60,core rule,raw,XLV,-10.0,0.619
+60,core rule,raw,XLI,-10.0,0.612
+60,core rule,raw,XLB,-10.0,0.708
+60,core rule,raw,XLU,-10.0,0.887
+60,core rule,raw,XLRE,-10.0,1.265
+60,core rule,raw,XLC,-10.0,0.783
+65,core rule,raw,XLK,-11.12,1.096
+65,core rule,raw,XLY,-11.12,0.913
+65,core rule,raw,XLP,-11.12,0.733
+65,core rule,raw,XLE,-11.12,-0.622
+65,core rule,raw,XLF,-11.12,0.302
+65,core rule,raw,XLV,-11.12,0.688
+65,core rule,raw,XLI,-11.12,0.68
+65,core rule,raw,XLB,-11.12,0.787
+65,core rule,raw,XLU,-11.12,0.987
+65,core rule,raw,XLRE,-11.12,1.407
+65,core rule,raw,XLC,-11.12,0.87
+70,core rule,raw,XLK,-12.16,1.198
+70,core rule,raw,XLY,-12.16,0.998
+70,core rule,raw,XLP,-12.16,0.801
+70,core rule,raw,XLE,-12.16,-0.68
+70,core rule,raw,XLF,-12.16,0.33
+70,core rule,raw,XLV,-12.16,0.752
+70,core rule,raw,XLI,-12.16,0.744
+70,core rule,raw,XLB,-12.16,0.861
+70,core rule,raw,XLU,-12.16,1.079
+70,core rule,raw,XLRE,-12.16,1.538
+70,core rule,raw,XLC,-12.16,0.952
+75,core rule,raw,XLK,-13.13,1.294
+75,core rule,raw,XLY,-13.13,1.078
+75,core rule,raw,XLP,-13.13,0.865
+75,core rule,raw,XLE,-13.13,-0.735
+75,core rule,raw,XLF,-13.13,0.356
+75,core rule,raw,XLV,-13.13,0.812
+75,core rule,raw,XLI,-13.13,0.803
+75,core rule,raw,XLB,-13.13,0.929
+75,core rule,raw,XLU,-13.13,1.165
+75,core rule,raw,XLRE,-13.13,1.661
+75,core rule,raw,XLC,-13.13,1.027
+80,core rule,raw,XLK,-14.04,1.383
+80,core rule,raw,XLY,-14.04,1.153
+80,core rule,raw,XLP,-14.04,0.925
+80,core rule,raw,XLE,-14.04,-0.786
+80,core rule,raw,XLF,-14.04,0.381
+80,core rule,raw,XLV,-14.04,0.869
+80,core rule,raw,XLI,-14.04,0.859
+80,core rule,raw,XLB,-14.04,0.994
+80,core rule,raw,XLU,-14.04,1.246
+80,core rule,raw,XLRE,-14.04,1.776
+80,core rule,raw,XLC,-14.04,1.099
+85,core rule,raw,XLK,-14.89,1.467
+85,core rule,raw,XLY,-14.89,1.222
+85,core rule,raw,XLP,-14.89,0.981
+85,core rule,raw,XLE,-14.89,-0.833
+85,core rule,raw,XLF,-14.89,0.404
+85,core rule,raw,XLV,-14.89,0.921
+85,core rule,raw,XLI,-14.89,0.911
+85,core rule,raw,XLB,-14.89,1.054
+85,core rule,raw,XLU,-14.89,1.321
+85,core rule,raw,XLRE,-14.89,1.884
+85,core rule,raw,XLC,-14.89,1.165
+90,core rule,raw,XLK,-15.69,1.546
+90,core rule,raw,XLY,-15.69,1.288
+90,core rule,raw,XLP,-15.69,1.034
+90,core rule,raw,XLE,-15.69,-0.878
+90,core rule,raw,XLF,-15.69,0.426
+90,core rule,raw,XLV,-15.69,0.971
+90,core rule,raw,XLI,-15.69,0.96
+90,core rule,raw,XLB,-15.69,1.111
+90,core rule,raw,XLU,-15.69,1.392
+90,core rule,raw,XLRE,-15.69,1.985
+90,core rule,raw,XLC,-15.69,1.228
+95,core rule,raw,XLK,-16.45,1.621
+95,core rule,raw,XLY,-16.45,1.35
+95,core rule,raw,XLP,-16.45,1.084
+95,core rule,raw,XLE,-16.45,-0.921
+95,core rule,raw,XLF,-16.45,0.447
+95,core rule,raw,XLV,-16.45,1.018
+95,core rule,raw,XLI,-16.45,1.007
+95,core rule,raw,XLB,-16.45,1.164
+95,core rule,raw,XLU,-16.45,1.459
+95,core rule,raw,XLRE,-16.45,2.081
+95,core rule,raw,XLC,-16.45,1.287
+100,core rule,raw,XLK,-17.17,1.692
+100,core rule,raw,XLY,-17.17,1.41
+100,core rule,raw,XLP,-17.17,1.131
+100,core rule,raw,XLE,-17.17,-0.961
+100,core rule,raw,XLF,-17.17,0.466
+100,core rule,raw,XLV,-17.17,1.062
+100,core rule,raw,XLI,-17.17,1.051
+100,core rule,raw,XLB,-17.17,1.215
+100,core rule,raw,XLU,-17.17,1.523
+100,core rule,raw,XLRE,-17.17,2.172
+100,core rule,raw,XLC,-17.17,1.344
+105,core rule,raw,XLK,-17.85,1.759
+105,core rule,raw,XLY,-17.85,1.465
+105,core rule,raw,XLP,-17.85,1.176
+105,core rule,raw,XLE,-17.85,-0.999
+105,core rule,raw,XLF,-17.85,0.485
+105,core rule,raw,XLV,-17.85,1.104
+105,core rule,raw,XLI,-17.85,1.092
+105,core rule,raw,XLB,-17.85,1.263
+105,core rule,raw,XLU,-17.85,1.584
+105,core rule,raw,XLRE,-17.85,2.258
+105,core rule,raw,XLC,-17.85,1.397
+110,core rule,raw,XLK,-18.51,1.824
+110,core rule,raw,XLY,-18.51,1.52
+110,core rule,raw,XLP,-18.51,1.219
+110,core rule,raw,XLE,-18.51,-1.036
+110,core rule,raw,XLF,-18.51,0.503
+110,core rule,raw,XLV,-18.51,1.145
+110,core rule,raw,XLI,-18.51,1.133
+110,core rule,raw,XLB,-18.51,1.31
+110,core rule,raw,XLU,-18.51,1.642
+110,core rule,raw,XLRE,-18.51,2.341
+110,core rule,raw,XLC,-18.51,1.448
+115,core rule,raw,XLK,-19.13,1.885
+115,core rule,raw,XLY,-19.13,1.57
+115,core rule,raw,XLP,-19.13,1.26
+115,core rule,raw,XLE,-19.13,-1.071
+115,core rule,raw,XLF,-19.13,0.519
+115,core rule,raw,XLV,-19.13,1.184
+115,core rule,raw,XLI,-19.13,1.17
+115,core rule,raw,XLB,-19.13,1.354
+115,core rule,raw,XLU,-19.13,1.697
+115,core rule,raw,XLRE,-19.13,2.42
+115,core rule,raw,XLC,-19.13,1.497
+120,core rule,raw,XLK,-19.73,1.944
+120,core rule,raw,XLY,-19.73,1.62
+120,core rule,raw,XLP,-19.73,1.3
+120,core rule,raw,XLE,-19.73,-1.104
+120,core rule,raw,XLF,-19.73,0.536
+120,core rule,raw,XLV,-19.73,1.221
+120,core rule,raw,XLI,-19.73,1.207
+120,core rule,raw,XLB,-19.73,1.397
+120,core rule,raw,XLU,-19.73,1.75
+120,core rule,raw,XLRE,-19.73,2.496
+120,core rule,raw,XLC,-19.73,1.544
+125,core rule,raw,XLK,-20.3,2.0
+125,core rule,raw,XLY,-20.3,1.667
+125,core rule,raw,XLP,-20.3,1.337
+125,core rule,raw,XLE,-20.3,-1.136
+125,core rule,raw,XLF,-20.3,0.551
+125,core rule,raw,XLV,-20.3,1.256
+125,core rule,raw,XLI,-20.3,1.242
+125,core rule,raw,XLB,-20.3,1.437
+125,core rule,raw,XLU,-20.3,1.801
+125,core rule,raw,XLRE,-20.3,2.568
+125,core rule,raw,XLC,-20.3,1.589
+130,core rule,raw,XLK,-20.85,2.054
+130,core rule,raw,XLY,-20.85,1.712
+130,core rule,raw,XLP,-20.85,1.373
+130,core rule,raw,XLE,-20.85,-1.167
+130,core rule,raw,XLF,-20.85,0.566
+130,core rule,raw,XLV,-20.85,1.29
+130,core rule,raw,XLI,-20.85,1.276
+130,core rule,raw,XLB,-20.85,1.476
+130,core rule,raw,XLU,-20.85,1.85
+130,core rule,raw,XLRE,-20.85,2.637
+130,core rule,raw,XLC,-20.85,1.632
+135,core rule,raw,XLK,-21.38,2.107
+135,core rule,raw,XLY,-21.38,1.755
+135,core rule,raw,XLP,-21.38,1.408
+135,core rule,raw,XLE,-21.38,-1.196
+135,core rule,raw,XLF,-21.38,0.58
+135,core rule,raw,XLV,-21.38,1.323
+135,core rule,raw,XLI,-21.38,1.308
+135,core rule,raw,XLB,-21.38,1.513
+135,core rule,raw,XLU,-21.38,1.897
+135,core rule,raw,XLRE,-21.38,2.704
+135,core rule,raw,XLC,-21.38,1.673
+140,core rule,raw,XLK,-21.89,2.157
+140,core rule,raw,XLY,-21.89,1.797
+140,core rule,raw,XLP,-21.89,1.442
+140,core rule,raw,XLE,-21.89,-1.225
+140,core rule,raw,XLF,-21.89,0.594
+140,core rule,raw,XLV,-21.89,1.354
+140,core rule,raw,XLI,-21.89,1.339
+140,core rule,raw,XLB,-21.89,1.549
+140,core rule,raw,XLU,-21.89,1.942
+140,core rule,raw,XLRE,-21.89,2.769
+140,core rule,raw,XLC,-21.89,1.713
+60,hawkish,raw,XLK,-67.57,6.658
+60,hawkish,raw,XLY,-67.57,5.547
+60,hawkish,raw,XLP,-67.57,4.451
+60,hawkish,raw,XLE,-67.57,-3.781
+60,hawkish,raw,XLF,-67.57,1.834
+60,hawkish,raw,XLV,-67.57,4.18
+60,hawkish,raw,XLI,-67.57,4.134
+60,hawkish,raw,XLB,-67.57,4.783
+60,hawkish,raw,XLU,-67.57,5.995
+60,hawkish,raw,XLRE,-67.57,8.547
+60,hawkish,raw,XLC,-67.57,5.288
+65,hawkish,raw,XLK,-61.59,6.069
+65,hawkish,raw,XLY,-61.59,5.056
+65,hawkish,raw,XLP,-61.59,4.057
+65,hawkish,raw,XLE,-61.59,-3.447
+65,hawkish,raw,XLF,-61.59,1.672
+65,hawkish,raw,XLV,-61.59,3.81
+65,hawkish,raw,XLI,-61.59,3.768
+65,hawkish,raw,XLB,-61.59,4.36
+65,hawkish,raw,XLU,-61.59,5.464
+65,hawkish,raw,XLRE,-61.59,7.791
+65,hawkish,raw,XLC,-61.59,4.82
+70,hawkish,raw,XLK,-56.04,5.522
+70,hawkish,raw,XLY,-56.04,4.601
+70,hawkish,raw,XLP,-56.04,3.692
+70,hawkish,raw,XLE,-56.04,-3.136
+70,hawkish,raw,XLF,-56.04,1.521
+70,hawkish,raw,XLV,-56.04,3.467
+70,hawkish,raw,XLI,-56.04,3.429
+70,hawkish,raw,XLB,-56.04,3.967
+70,hawkish,raw,XLU,-56.04,4.972
+70,hawkish,raw,XLRE,-56.04,7.089
+70,hawkish,raw,XLC,-56.04,4.385
+75,hawkish,raw,XLK,-50.85,5.01
+75,hawkish,raw,XLY,-50.85,4.174
+75,hawkish,raw,XLP,-50.85,3.35
+75,hawkish,raw,XLE,-50.85,-2.846
+75,hawkish,raw,XLF,-50.85,1.381
+75,hawkish,raw,XLV,-50.85,3.146
+75,hawkish,raw,XLI,-50.85,3.111
+75,hawkish,raw,XLB,-50.85,3.599
+75,hawkish,raw,XLU,-50.85,4.512
+75,hawkish,raw,XLRE,-50.85,6.432
+75,hawkish,raw,XLC,-50.85,3.979
+80,hawkish,raw,XLK,-45.99,4.532
+80,hawkish,raw,XLY,-45.99,3.775
+80,hawkish,raw,XLP,-45.99,3.03
+80,hawkish,raw,XLE,-45.99,-2.574
+80,hawkish,raw,XLF,-45.99,1.249
+80,hawkish,raw,XLV,-45.99,2.845
+80,hawkish,raw,XLI,-45.99,2.814
+80,hawkish,raw,XLB,-45.99,3.255
+80,hawkish,raw,XLU,-45.99,4.08
+80,hawkish,raw,XLRE,-45.99,5.817
+80,hawkish,raw,XLC,-45.99,3.599
+85,hawkish,raw,XLK,-41.42,4.081
+85,hawkish,raw,XLY,-41.42,3.4
+85,hawkish,raw,XLP,-41.42,2.729
+85,hawkish,raw,XLE,-41.42,-2.318
+85,hawkish,raw,XLF,-41.42,1.124
+85,hawkish,raw,XLV,-41.42,2.563
+85,hawkish,raw,XLI,-41.42,2.534
+85,hawkish,raw,XLB,-41.42,2.932
+85,hawkish,raw,XLU,-41.42,3.675
+85,hawkish,raw,XLRE,-41.42,5.239
+85,hawkish,raw,XLC,-41.42,3.241
+90,hawkish,raw,XLK,-37.1,3.656
+90,hawkish,raw,XLY,-37.1,3.046
+90,hawkish,raw,XLP,-37.1,2.444
+90,hawkish,raw,XLE,-37.1,-2.076
+90,hawkish,raw,XLF,-37.1,1.007
+90,hawkish,raw,XLV,-37.1,2.295
+90,hawkish,raw,XLI,-37.1,2.27
+90,hawkish,raw,XLB,-37.1,2.626
+90,hawkish,raw,XLU,-37.1,3.292
+90,hawkish,raw,XLRE,-37.1,4.693
+90,hawkish,raw,XLC,-37.1,2.903
+95,hawkish,raw,XLK,-33.0,3.252
+95,hawkish,raw,XLY,-33.0,2.709
+95,hawkish,raw,XLP,-33.0,2.174
+95,hawkish,raw,XLE,-33.0,-1.847
+95,hawkish,raw,XLF,-33.0,0.896
+95,hawkish,raw,XLV,-33.0,2.042
+95,hawkish,raw,XLI,-33.0,2.019
+95,hawkish,raw,XLB,-33.0,2.336
+95,hawkish,raw,XLU,-33.0,2.928
+95,hawkish,raw,XLRE,-33.0,4.174
+95,hawkish,raw,XLC,-33.0,2.582
+100,hawkish,raw,XLK,-29.11,2.868
+100,hawkish,raw,XLY,-29.11,2.39
+100,hawkish,raw,XLP,-29.11,1.918
+100,hawkish,raw,XLE,-29.11,-1.629
+100,hawkish,raw,XLF,-29.11,0.79
+100,hawkish,raw,XLV,-29.11,1.801
+100,hawkish,raw,XLI,-29.11,1.781
+100,hawkish,raw,XLB,-29.11,2.061
+100,hawkish,raw,XLU,-29.11,2.583
+100,hawkish,raw,XLRE,-29.11,3.682
+100,hawkish,raw,XLC,-29.11,2.278
+105,hawkish,raw,XLK,-25.4,2.503
+105,hawkish,raw,XLY,-25.4,2.085
+105,hawkish,raw,XLP,-25.4,1.673
+105,hawkish,raw,XLE,-25.4,-1.421
+105,hawkish,raw,XLF,-25.4,0.69
+105,hawkish,raw,XLV,-25.4,1.571
+105,hawkish,raw,XLI,-25.4,1.554
+105,hawkish,raw,XLB,-25.4,1.798
+105,hawkish,raw,XLU,-25.4,2.254
+105,hawkish,raw,XLRE,-25.4,3.213
+105,hawkish,raw,XLC,-25.4,1.988
+110,hawkish,raw,XLK,-21.86,2.154
+110,hawkish,raw,XLY,-21.86,1.795
+110,hawkish,raw,XLP,-21.86,1.44
+110,hawkish,raw,XLE,-21.86,-1.223
+110,hawkish,raw,XLF,-21.86,0.593
+110,hawkish,raw,XLV,-21.86,1.352
+110,hawkish,raw,XLI,-21.86,1.338
+110,hawkish,raw,XLB,-21.86,1.547
+110,hawkish,raw,XLU,-21.86,1.939
+110,hawkish,raw,XLRE,-21.86,2.765
+110,hawkish,raw,XLC,-21.86,1.711
+115,hawkish,raw,XLK,-18.47,1.82
+115,hawkish,raw,XLY,-18.47,1.516
+115,hawkish,raw,XLP,-18.47,1.217
+115,hawkish,raw,XLE,-18.47,-1.034
+115,hawkish,raw,XLF,-18.47,0.501
+115,hawkish,raw,XLV,-18.47,1.143
+115,hawkish,raw,XLI,-18.47,1.13
+115,hawkish,raw,XLB,-18.47,1.307
+115,hawkish,raw,XLU,-18.47,1.639
+115,hawkish,raw,XLRE,-18.47,2.336
+115,hawkish,raw,XLC,-18.47,1.445
+120,hawkish,raw,XLK,-15.22,1.5
+120,hawkish,raw,XLY,-15.22,1.249
+120,hawkish,raw,XLP,-15.22,1.003
+120,hawkish,raw,XLE,-15.22,-0.852
+120,hawkish,raw,XLF,-15.22,0.413
+120,hawkish,raw,XLV,-15.22,0.942
+120,hawkish,raw,XLI,-15.22,0.931
+120,hawkish,raw,XLB,-15.22,1.077
+120,hawkish,raw,XLU,-15.22,1.35
+120,hawkish,raw,XLRE,-15.22,1.925
+120,hawkish,raw,XLC,-15.22,1.191
+125,hawkish,raw,XLK,-12.1,1.192
+125,hawkish,raw,XLY,-12.1,0.993
+125,hawkish,raw,XLP,-12.1,0.797
+125,hawkish,raw,XLE,-12.1,-0.677
+125,hawkish,raw,XLF,-12.1,0.328
+125,hawkish,raw,XLV,-12.1,0.749
+125,hawkish,raw,XLI,-12.1,0.74
+125,hawkish,raw,XLB,-12.1,0.856
+125,hawkish,raw,XLU,-12.1,1.074
+125,hawkish,raw,XLRE,-12.1,1.531
+125,hawkish,raw,XLC,-12.1,0.947
+130,hawkish,raw,XLK,-9.1,0.897
+130,hawkish,raw,XLY,-9.1,0.747
+130,hawkish,raw,XLP,-9.1,0.599
+130,hawkish,raw,XLE,-9.1,-0.509
+130,hawkish,raw,XLF,-9.1,0.247
+130,hawkish,raw,XLV,-9.1,0.563
+130,hawkish,raw,XLI,-9.1,0.557
+130,hawkish,raw,XLB,-9.1,0.644
+130,hawkish,raw,XLU,-9.1,0.807
+130,hawkish,raw,XLRE,-9.1,1.151
+130,hawkish,raw,XLC,-9.1,0.712
+135,hawkish,raw,XLK,-6.2,0.611
+135,hawkish,raw,XLY,-6.2,0.509
+135,hawkish,raw,XLP,-6.2,0.408
+135,hawkish,raw,XLE,-6.2,-0.347
+135,hawkish,raw,XLF,-6.2,0.168
+135,hawkish,raw,XLV,-6.2,0.384
+135,hawkish,raw,XLI,-6.2,0.379
+135,hawkish,raw,XLB,-6.2,0.439
+135,hawkish,raw,XLU,-6.2,0.55
+135,hawkish,raw,XLRE,-6.2,0.784
+135,hawkish,raw,XLC,-6.2,0.485
+140,hawkish,raw,XLK,-3.41,0.336
+140,hawkish,raw,XLY,-3.41,0.28
+140,hawkish,raw,XLP,-3.41,0.225
+140,hawkish,raw,XLE,-3.41,-0.191
+140,hawkish,raw,XLF,-3.41,0.093
+140,hawkish,raw,XLV,-3.41,0.211
+140,hawkish,raw,XLI,-3.41,0.209
+140,hawkish,raw,XLB,-3.41,0.241
+140,hawkish,raw,XLU,-3.41,0.303
+140,hawkish,raw,XLRE,-3.41,0.431
+140,hawkish,raw,XLC,-3.41,0.267
+60,core rule,relative,XLK,-10.0,0.35
+60,core rule,relative,XLY,-10.0,0.186
+60,core rule,relative,XLP,-10.0,0.024
+60,core rule,relative,XLE,-10.0,-1.195
+60,core rule,relative,XLF,-10.0,-0.364
+60,core rule,relative,XLV,-10.0,-0.016
+60,core rule,relative,XLI,-10.0,-0.023
+60,core rule,relative,XLB,-10.0,0.073
+60,core rule,relative,XLU,-10.0,0.252
+60,core rule,relative,XLRE,-10.0,0.63
+60,core rule,relative,XLC,-10.0,0.095
+65,core rule,relative,XLK,-11.12,0.39
+65,core rule,relative,XLY,-11.12,0.207
+65,core rule,relative,XLP,-11.12,0.026
+65,core rule,relative,XLE,-11.12,-1.328
+65,core rule,relative,XLF,-11.12,-0.404
+65,core rule,relative,XLV,-11.12,-0.018
+65,core rule,relative,XLI,-11.12,-0.026
+65,core rule,relative,XLB,-11.12,0.081
+65,core rule,relative,XLU,-11.12,0.28
+65,core rule,relative,XLRE,-11.12,0.7
+65,core rule,relative,XLC,-11.12,0.106
+70,core rule,relative,XLK,-12.16,0.426
+70,core rule,relative,XLY,-12.16,0.226
+70,core rule,relative,XLP,-12.16,0.029
+70,core rule,relative,XLE,-12.16,-1.453
+70,core rule,relative,XLF,-12.16,-0.442
+70,core rule,relative,XLV,-12.16,-0.02
+70,core rule,relative,XLI,-12.16,-0.028
+70,core rule,relative,XLB,-12.16,0.089
+70,core rule,relative,XLU,-12.16,0.307
+70,core rule,relative,XLRE,-12.16,0.766
+70,core rule,relative,XLC,-12.16,0.115
+75,core rule,relative,XLK,-13.13,0.46
+75,core rule,relative,XLY,-13.13,0.244
+75,core rule,relative,XLP,-13.13,0.031
+75,core rule,relative,XLE,-13.13,-1.569
+75,core rule,relative,XLF,-13.13,-0.477
+75,core rule,relative,XLV,-13.13,-0.021
+75,core rule,relative,XLI,-13.13,-0.03
+75,core rule,relative,XLB,-13.13,0.096
+75,core rule,relative,XLU,-13.13,0.331
+75,core rule,relative,XLRE,-13.13,0.827
+75,core rule,relative,XLC,-13.13,0.125
+80,core rule,relative,XLK,-14.04,0.492
+80,core rule,relative,XLY,-14.04,0.261
+80,core rule,relative,XLP,-14.04,0.033
+80,core rule,relative,XLE,-14.04,-1.677
+80,core rule,relative,XLF,-14.04,-0.51
+80,core rule,relative,XLV,-14.04,-0.023
+80,core rule,relative,XLI,-14.04,-0.033
+80,core rule,relative,XLB,-14.04,0.102
+80,core rule,relative,XLU,-14.04,0.354
+80,core rule,relative,XLRE,-14.04,0.884
+80,core rule,relative,XLC,-14.04,0.133
+85,core rule,relative,XLK,-14.89,0.522
+85,core rule,relative,XLY,-14.89,0.277
+85,core rule,relative,XLP,-14.89,0.035
+85,core rule,relative,XLE,-14.89,-1.779
+85,core rule,relative,XLF,-14.89,-0.541
+85,core rule,relative,XLV,-14.89,-0.024
+85,core rule,relative,XLI,-14.89,-0.034
+85,core rule,relative,XLB,-14.89,0.108
+85,core rule,relative,XLU,-14.89,0.376
+85,core rule,relative,XLRE,-14.89,0.938
+85,core rule,relative,XLC,-14.89,0.141
+90,core rule,relative,XLK,-15.69,0.55
+90,core rule,relative,XLY,-15.69,0.292
+90,core rule,relative,XLP,-15.69,0.037
+90,core rule,relative,XLE,-15.69,-1.874
+90,core rule,relative,XLF,-15.69,-0.57
+90,core rule,relative,XLV,-15.69,-0.026
+90,core rule,relative,XLI,-15.69,-0.036
+90,core rule,relative,XLB,-15.69,0.114
+90,core rule,relative,XLU,-15.69,0.396
+90,core rule,relative,XLRE,-15.69,0.988
+90,core rule,relative,XLC,-15.69,0.149
+95,core rule,relative,XLK,-16.45,0.576
+95,core rule,relative,XLY,-16.45,0.306
+95,core rule,relative,XLP,-16.45,0.039
+95,core rule,relative,XLE,-16.45,-1.965
+95,core rule,relative,XLF,-16.45,-0.598
+95,core rule,relative,XLV,-16.45,-0.027
+95,core rule,relative,XLI,-16.45,-0.038
+95,core rule,relative,XLB,-16.45,0.12
+95,core rule,relative,XLU,-16.45,0.415
+95,core rule,relative,XLRE,-16.45,1.036
+95,core rule,relative,XLC,-16.45,0.156
+100,core rule,relative,XLK,-17.17,0.602
+100,core rule,relative,XLY,-17.17,0.319
+100,core rule,relative,XLP,-17.17,0.041
+100,core rule,relative,XLE,-17.17,-2.051
+100,core rule,relative,XLF,-17.17,-0.624
+100,core rule,relative,XLV,-17.17,-0.028
+100,core rule,relative,XLI,-17.17,-0.04
+100,core rule,relative,XLB,-17.17,0.125
+100,core rule,relative,XLU,-17.17,0.433
+100,core rule,relative,XLRE,-17.17,1.082
+100,core rule,relative,XLC,-17.17,0.163
+105,core rule,relative,XLK,-17.85,0.625
+105,core rule,relative,XLY,-17.85,0.332
+105,core rule,relative,XLP,-17.85,0.042
+105,core rule,relative,XLE,-17.85,-2.132
+105,core rule,relative,XLF,-17.85,-0.649
+105,core rule,relative,XLV,-17.85,-0.029
+105,core rule,relative,XLI,-17.85,-0.041
+105,core rule,relative,XLB,-17.85,0.13
+105,core rule,relative,XLU,-17.85,0.45
+105,core rule,relative,XLRE,-17.85,1.124
+105,core rule,relative,XLC,-17.85,0.169
+110,core rule,relative,XLK,-18.51,0.648
+110,core rule,relative,XLY,-18.51,0.344
+110,core rule,relative,XLP,-18.51,0.044
+110,core rule,relative,XLE,-18.51,-2.211
+110,core rule,relative,XLF,-18.51,-0.673
+110,core rule,relative,XLV,-18.51,-0.03
+110,core rule,relative,XLI,-18.51,-0.043
+110,core rule,relative,XLB,-18.51,0.135
+110,core rule,relative,XLU,-18.51,0.467
+110,core rule,relative,XLRE,-18.51,1.166
+110,core rule,relative,XLC,-18.51,0.176
+115,core rule,relative,XLK,-19.13,0.67
+115,core rule,relative,XLY,-19.13,0.356
+115,core rule,relative,XLP,-19.13,0.045
+115,core rule,relative,XLE,-19.13,-2.285
+115,core rule,relative,XLF,-19.13,-0.695
+115,core rule,relative,XLV,-19.13,-0.031
+115,core rule,relative,XLI,-19.13,-0.044
+115,core rule,relative,XLB,-19.13,0.139
+115,core rule,relative,XLU,-19.13,0.482
+115,core rule,relative,XLRE,-19.13,1.205
+115,core rule,relative,XLC,-19.13,0.182
+120,core rule,relative,XLK,-19.73,0.691
+120,core rule,relative,XLY,-19.73,0.367
+120,core rule,relative,XLP,-19.73,0.047
+120,core rule,relative,XLE,-19.73,-2.357
+120,core rule,relative,XLF,-19.73,-0.717
+120,core rule,relative,XLV,-19.73,-0.032
+120,core rule,relative,XLI,-19.73,-0.046
+120,core rule,relative,XLB,-19.73,0.144
+120,core rule,relative,XLU,-19.73,0.498
+120,core rule,relative,XLRE,-19.73,1.243
+120,core rule,relative,XLC,-19.73,0.187
+125,core rule,relative,XLK,-20.3,0.711
+125,core rule,relative,XLY,-20.3,0.377
+125,core rule,relative,XLP,-20.3,0.048
+125,core rule,relative,XLE,-20.3,-2.425
+125,core rule,relative,XLF,-20.3,-0.738
+125,core rule,relative,XLV,-20.3,-0.033
+125,core rule,relative,XLI,-20.3,-0.047
+125,core rule,relative,XLB,-20.3,0.148
+125,core rule,relative,XLU,-20.3,0.512
+125,core rule,relative,XLRE,-20.3,1.279
+125,core rule,relative,XLC,-20.3,0.193
+130,core rule,relative,XLK,-20.85,0.73
+130,core rule,relative,XLY,-20.85,0.388
+130,core rule,relative,XLP,-20.85,0.049
+130,core rule,relative,XLE,-20.85,-2.491
+130,core rule,relative,XLF,-20.85,-0.758
+130,core rule,relative,XLV,-20.85,-0.034
+130,core rule,relative,XLI,-20.85,-0.048
+130,core rule,relative,XLB,-20.85,0.152
+130,core rule,relative,XLU,-20.85,0.526
+130,core rule,relative,XLRE,-20.85,1.313
+130,core rule,relative,XLC,-20.85,0.198
+135,core rule,relative,XLK,-21.38,0.749
+135,core rule,relative,XLY,-21.38,0.397
+135,core rule,relative,XLP,-21.38,0.051
+135,core rule,relative,XLE,-21.38,-2.554
+135,core rule,relative,XLF,-21.38,-0.777
+135,core rule,relative,XLV,-21.38,-0.035
+135,core rule,relative,XLI,-21.38,-0.05
+135,core rule,relative,XLB,-21.38,0.156
+135,core rule,relative,XLU,-21.38,0.539
+135,core rule,relative,XLRE,-21.38,1.347
+135,core rule,relative,XLC,-21.38,0.203
+140,core rule,relative,XLK,-21.89,0.767
+140,core rule,relative,XLY,-21.89,0.407
+140,core rule,relative,XLP,-21.89,0.052
+140,core rule,relative,XLE,-21.89,-2.615
+140,core rule,relative,XLF,-21.89,-0.796
+140,core rule,relative,XLV,-21.89,-0.036
+140,core rule,relative,XLI,-21.89,-0.051
+140,core rule,relative,XLB,-21.89,0.159
+140,core rule,relative,XLU,-21.89,0.552
+140,core rule,relative,XLRE,-21.89,1.379
+140,core rule,relative,XLC,-21.89,0.208
+60,hawkish,relative,XLK,-67.57,2.367
+60,hawkish,relative,XLY,-67.57,1.256
+60,hawkish,relative,XLP,-67.57,0.16
+60,hawkish,relative,XLE,-67.57,-8.072
+60,hawkish,relative,XLF,-67.57,-2.456
+60,hawkish,relative,XLV,-67.57,-0.11
+60,hawkish,relative,XLI,-67.57,-0.157
+60,hawkish,relative,XLB,-67.57,0.492
+60,hawkish,relative,XLU,-67.57,1.704
+60,hawkish,relative,XLRE,-67.57,4.256
+60,hawkish,relative,XLC,-67.57,0.641
+65,hawkish,relative,XLK,-61.59,2.158
+65,hawkish,relative,XLY,-61.59,1.145
+65,hawkish,relative,XLP,-61.59,0.146
+65,hawkish,relative,XLE,-61.59,-7.358
+65,hawkish,relative,XLF,-61.59,-2.239
+65,hawkish,relative,XLV,-61.59,-0.101
+65,hawkish,relative,XLI,-61.59,-0.143
+65,hawkish,relative,XLB,-61.59,0.448
+65,hawkish,relative,XLU,-61.59,1.553
+65,hawkish,relative,XLRE,-61.59,3.88
+65,hawkish,relative,XLC,-61.59,0.585
+70,hawkish,relative,XLK,-56.04,1.963
+70,hawkish,relative,XLY,-56.04,1.042
+70,hawkish,relative,XLP,-56.04,0.133
+70,hawkish,relative,XLE,-56.04,-6.695
+70,hawkish,relative,XLF,-56.04,-2.037
+70,hawkish,relative,XLV,-56.04,-0.092
+70,hawkish,relative,XLI,-56.04,-0.13
+70,hawkish,relative,XLB,-56.04,0.408
+70,hawkish,relative,XLU,-56.04,1.413
+70,hawkish,relative,XLRE,-56.04,3.53
+70,hawkish,relative,XLC,-56.04,0.532
+75,hawkish,relative,XLK,-50.85,1.781
+75,hawkish,relative,XLY,-50.85,0.945
+75,hawkish,relative,XLP,-50.85,0.121
+75,hawkish,relative,XLE,-50.85,-6.075
+75,hawkish,relative,XLF,-50.85,-1.849
+75,hawkish,relative,XLV,-50.85,-0.083
+75,hawkish,relative,XLI,-50.85,-0.118
+75,hawkish,relative,XLB,-50.85,0.37
+75,hawkish,relative,XLU,-50.85,1.282
+75,hawkish,relative,XLRE,-50.85,3.203
+75,hawkish,relative,XLC,-50.85,0.483
+80,hawkish,relative,XLK,-45.99,1.611
+80,hawkish,relative,XLY,-45.99,0.855
+80,hawkish,relative,XLP,-45.99,0.109
+80,hawkish,relative,XLE,-45.99,-5.494
+80,hawkish,relative,XLF,-45.99,-1.672
+80,hawkish,relative,XLV,-45.99,-0.075
+80,hawkish,relative,XLI,-45.99,-0.107
+80,hawkish,relative,XLB,-45.99,0.335
+80,hawkish,relative,XLU,-45.99,1.16
+80,hawkish,relative,XLRE,-45.99,2.897
+80,hawkish,relative,XLC,-45.99,0.437
+85,hawkish,relative,XLK,-41.42,1.451
+85,hawkish,relative,XLY,-41.42,0.77
+85,hawkish,relative,XLP,-41.42,0.098
+85,hawkish,relative,XLE,-41.42,-4.948
+85,hawkish,relative,XLF,-41.42,-1.506
+85,hawkish,relative,XLV,-41.42,-0.068
+85,hawkish,relative,XLI,-41.42,-0.096
+85,hawkish,relative,XLB,-41.42,0.302
+85,hawkish,relative,XLU,-41.42,1.045
+85,hawkish,relative,XLRE,-41.42,2.609
+85,hawkish,relative,XLC,-41.42,0.393
+90,hawkish,relative,XLK,-37.1,1.3
+90,hawkish,relative,XLY,-37.1,0.69
+90,hawkish,relative,XLP,-37.1,0.088
+90,hawkish,relative,XLE,-37.1,-4.432
+90,hawkish,relative,XLF,-37.1,-1.349
+90,hawkish,relative,XLV,-37.1,-0.061
+90,hawkish,relative,XLI,-37.1,-0.086
+90,hawkish,relative,XLB,-37.1,0.27
+90,hawkish,relative,XLU,-37.1,0.936
+90,hawkish,relative,XLRE,-37.1,2.337
+90,hawkish,relative,XLC,-37.1,0.352
+95,hawkish,relative,XLK,-33.0,1.156
+95,hawkish,relative,XLY,-33.0,0.614
+95,hawkish,relative,XLP,-33.0,0.078
+95,hawkish,relative,XLE,-33.0,-3.942
+95,hawkish,relative,XLF,-33.0,-1.2
+95,hawkish,relative,XLV,-33.0,-0.054
+95,hawkish,relative,XLI,-33.0,-0.076
+95,hawkish,relative,XLB,-33.0,0.24
+95,hawkish,relative,XLU,-33.0,0.832
+95,hawkish,relative,XLRE,-33.0,2.079
+95,hawkish,relative,XLC,-33.0,0.313
+100,hawkish,relative,XLK,-29.11,1.02
+100,hawkish,relative,XLY,-29.11,0.541
+100,hawkish,relative,XLP,-29.11,0.069
+100,hawkish,relative,XLE,-29.11,-3.478
+100,hawkish,relative,XLF,-29.11,-1.058
+100,hawkish,relative,XLV,-29.11,-0.048
+100,hawkish,relative,XLI,-29.11,-0.067
+100,hawkish,relative,XLB,-29.11,0.212
+100,hawkish,relative,XLU,-29.11,0.734
+100,hawkish,relative,XLRE,-29.11,1.834
+100,hawkish,relative,XLC,-29.11,0.276
+105,hawkish,relative,XLK,-25.4,0.89
+105,hawkish,relative,XLY,-25.4,0.472
+105,hawkish,relative,XLP,-25.4,0.06
+105,hawkish,relative,XLE,-25.4,-3.034
+105,hawkish,relative,XLF,-25.4,-0.923
+105,hawkish,relative,XLV,-25.4,-0.042
+105,hawkish,relative,XLI,-25.4,-0.059
+105,hawkish,relative,XLB,-25.4,0.185
+105,hawkish,relative,XLU,-25.4,0.641
+105,hawkish,relative,XLRE,-25.4,1.6
+105,hawkish,relative,XLC,-25.4,0.241
+110,hawkish,relative,XLK,-21.86,0.766
+110,hawkish,relative,XLY,-21.86,0.406
+110,hawkish,relative,XLP,-21.86,0.052
+110,hawkish,relative,XLE,-21.86,-2.611
+110,hawkish,relative,XLF,-21.86,-0.795
+110,hawkish,relative,XLV,-21.86,-0.036
+110,hawkish,relative,XLI,-21.86,-0.051
+110,hawkish,relative,XLB,-21.86,0.159
+110,hawkish,relative,XLU,-21.86,0.551
+110,hawkish,relative,XLRE,-21.86,1.377
+110,hawkish,relative,XLC,-21.86,0.207
+115,hawkish,relative,XLK,-18.47,0.647
+115,hawkish,relative,XLY,-18.47,0.343
+115,hawkish,relative,XLP,-18.47,0.044
+115,hawkish,relative,XLE,-18.47,-2.206
+115,hawkish,relative,XLF,-18.47,-0.671
+115,hawkish,relative,XLV,-18.47,-0.03
+115,hawkish,relative,XLI,-18.47,-0.043
+115,hawkish,relative,XLB,-18.47,0.134
+115,hawkish,relative,XLU,-18.47,0.466
+115,hawkish,relative,XLRE,-18.47,1.163
+115,hawkish,relative,XLC,-18.47,0.175
+120,hawkish,relative,XLK,-15.22,0.533
+120,hawkish,relative,XLY,-15.22,0.283
+120,hawkish,relative,XLP,-15.22,0.036
+120,hawkish,relative,XLE,-15.22,-1.818
+120,hawkish,relative,XLF,-15.22,-0.553
+120,hawkish,relative,XLV,-15.22,-0.025
+120,hawkish,relative,XLI,-15.22,-0.035
+120,hawkish,relative,XLB,-15.22,0.111
+120,hawkish,relative,XLU,-15.22,0.384
+120,hawkish,relative,XLRE,-15.22,0.959
+120,hawkish,relative,XLC,-15.22,0.144
+125,hawkish,relative,XLK,-12.1,0.424
+125,hawkish,relative,XLY,-12.1,0.225
+125,hawkish,relative,XLP,-12.1,0.029
+125,hawkish,relative,XLE,-12.1,-1.446
+125,hawkish,relative,XLF,-12.1,-0.44
+125,hawkish,relative,XLV,-12.1,-0.02
+125,hawkish,relative,XLI,-12.1,-0.028
+125,hawkish,relative,XLB,-12.1,0.088
+125,hawkish,relative,XLU,-12.1,0.305
+125,hawkish,relative,XLRE,-12.1,0.762
+125,hawkish,relative,XLC,-12.1,0.115
+130,hawkish,relative,XLK,-9.1,0.319
+130,hawkish,relative,XLY,-9.1,0.169
+130,hawkish,relative,XLP,-9.1,0.022
+130,hawkish,relative,XLE,-9.1,-1.087
+130,hawkish,relative,XLF,-9.1,-0.331
+130,hawkish,relative,XLV,-9.1,-0.015
+130,hawkish,relative,XLI,-9.1,-0.021
+130,hawkish,relative,XLB,-9.1,0.066
+130,hawkish,relative,XLU,-9.1,0.229
+130,hawkish,relative,XLRE,-9.1,0.573
+130,hawkish,relative,XLC,-9.1,0.086
+135,hawkish,relative,XLK,-6.2,0.217
+135,hawkish,relative,XLY,-6.2,0.115
+135,hawkish,relative,XLP,-6.2,0.015
+135,hawkish,relative,XLE,-6.2,-0.741
+135,hawkish,relative,XLF,-6.2,-0.225
+135,hawkish,relative,XLV,-6.2,-0.01
+135,hawkish,relative,XLI,-6.2,-0.014
+135,hawkish,relative,XLB,-6.2,0.045
+135,hawkish,relative,XLU,-6.2,0.156
+135,hawkish,relative,XLRE,-6.2,0.391
+135,hawkish,relative,XLC,-6.2,0.059
+140,hawkish,relative,XLK,-3.41,0.119
+140,hawkish,relative,XLY,-3.41,0.063
+140,hawkish,relative,XLP,-3.41,0.008
+140,hawkish,relative,XLE,-3.41,-0.407
+140,hawkish,relative,XLF,-3.41,-0.124
+140,hawkish,relative,XLV,-3.41,-0.006
+140,hawkish,relative,XLI,-3.41,-0.008
+140,hawkish,relative,XLB,-3.41,0.025
+140,hawkish,relative,XLU,-3.41,0.086
+140,hawkish,relative,XLRE,-3.41,0.215
+140,hawkish,relative,XLC,-3.41,0.032
