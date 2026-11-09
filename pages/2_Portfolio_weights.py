@@ -14,8 +14,7 @@ import streamlit as st
 from scipy.optimize import minimize
 
 st.set_page_config(page_title="Top Down sector weights", layout="wide")
-IN = next(p for p in (Path(__file__).parent / "bl_inputs", Path(__file__).parent.parent / "bl_inputs") if p.exists())
-
+IN = next(p for p in (Path(__file__).parent / "bl_inputs", Path(__file__).parent.parent / "bl_inputs", Path(__file__).parent.parent) if (p / "meta.json").exists())
 SECTORS = ["XLK", "XLF", "XLV", "XLY", "XLC", "XLI", "XLP", "XLE", "XLU", "XLRE", "XLB"]
 NAMES = {"XLK": "Technology", "XLF": "Financials", "XLV": "Health care",
          "XLY": "Consumer discretionary", "XLC": "Communication services",
