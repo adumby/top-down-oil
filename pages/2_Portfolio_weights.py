@@ -18,19 +18,23 @@ IN = next(p for p in (Path(__file__).parent / "bl_inputs", Path(__file__).parent
                       Path(__file__).parent.parent) if (p / "meta.json").exists())
 
 SECTORS = ["XLK", "XLF", "XLV", "XLY", "XLC", "XLI", "XLP", "XLE", "XLU", "XLRE", "XLB"]
-BONDS = ["IGSB", "IBID", "AGZ", "VGIT", "UST10", "TIPS10"]
-GOLD = ["IAU"]
+BONDS = ["SCHO", "SCHP", "VCSH", "BKLN", "IGSB", "IBID", "AGZ", "VGIT", "UST10", "TIPS10"]
+GOLD = ["IAU", "SIVR"]   # metals
 ASSETS = SECTORS + BONDS + GOLD
 NAMES = {"XLK": "Technology (XLK/VGT)", "XLF": "Financials (XLF)", "XLV": "Health care (XLV)",
          "XLY": "Consumer discretionary (XLY)", "XLC": "Communication services (XLC)",
          "XLI": "Industrials (XLI)", "XLP": "Consumer staples (XLP)", "XLE": "Energy (XLE)",
          "XLU": "Utilities (XLU)", "XLRE": "Real estate (XLRE/SCHH)", "XLB": "Materials (XLB)",
+         "SCHO": "SCHO: short Treasury", "SCHP": "SCHP: US TIPS", "VCSH": "VCSH: short corporate",
+         "BKLN": "BKLN: senior loans", "SIVR": "Silver (SIVR)",
          "IGSB": "IGSB: short IG corporate", "IBID": "IBID: TIPS maturing Oct 2027",
          "AGZ": "AGZ: agency bonds", "VGIT": "VGIT: intermediate Treasury",
          "UST10": "Long Treasury (10y, e.g. IEF)", "TIPS10": "10y TIPS (e.g. TIP)",
          "IAU": "Gold (IAU)", "CASH": "Cash"}
-GROUP = {**{a: "Equity" for a in SECTORS}, **{a: "Fixed income" for a in BONDS}, "IAU": "Gold", "CASH": "Cash"}
-DUR = pd.Series({"IGSB": 2.6, "IBID": 0.9, "AGZ": 3.4, "VGIT": 4.6, "UST10": 8.5, "TIPS10": 8.7})
+GROUP = {**{a: "Equity" for a in SECTORS}, **{a: "Fixed income" for a in BONDS},
+         "IAU": "Commodities", "SIVR": "Commodities", "CASH": "Cash"}
+DUR = pd.Series({"SCHO": 1.9, "SCHP": 6.5, "VCSH": 2.6, "BKLN": 0.25, "IGSB": 2.6, "IBID": 0.9,
+                 "AGZ": 3.4, "VGIT": 4.6, "UST10": 8.5, "TIPS10": 8.7})
 FACTORS = ["oil", "real", "ff12", "be", "term", "hy", "usd", "epu"]
 FLABEL = {"oil": "Oil (%)", "real": "Real yield (bp)", "ff12": "Fed expectations (bp)",
           "be": "Breakeven (bp)", "term": "10y-2y spread (bp)", "hy": "HY spread (bp)",
@@ -39,11 +43,14 @@ FLABEL = {"oil": "Oil (%)", "real": "Real yield (bp)", "ff12": "Fed expectations
 SP500 = {"XLK": 35.718619, "XLF": 12.728703, "XLV": 10.573163, "XLY": 9.465788,
          "XLC": 8.772470, "XLI": 8.128071, "XLP": 5.233176, "XLE": 3.590483,
          "XLU": 2.122525, "XLRE": 1.887814, "XLB": 1.779186}
-FI = {"IGSB": 14.36, "IBID": 5.76, "AGZ": 8.09, "VGIT": 6.79, "UST10": 0.0, "TIPS10": 0.0}
-CURRENT = {"XLK": 16.47, "XLF": 6.12, "XLV": 6.59, "XLY": 3.70, "XLC": 4.48, "XLI": 3.24,
-           "XLP": 6.08, "XLE": 4.99, "XLU": 1.42, "XLRE": 1.14, "XLB": 3.70, **FI, "IAU": 0.0}
-PROPOSED = {"XLK": 24.0, "XLF": 5.37, "XLV": 7.13, "XLY": 5.00, "XLC": 5.50, "XLI": 5.71,
-            "XLP": 2.03, "XLE": 2.50, "XLU": 2.23, "XLRE": 2.50, "XLB": 1.03, **FI, "IAU": 0.0}
+_Z = {a: 0.0 for a in BONDS + GOLD}
+# % of the whole fund, cash included (each team column sums to 100)
+CURRENT = {**_Z, "XLK": 16.47, "XLF": 6.12, "XLV": 6.59, "XLY": 3.70, "XLC": 4.48, "XLI": 3.24,
+           "XLP": 6.08, "XLE": 4.99, "XLU": 1.42, "XLRE": 1.14, "XLB": 3.70,
+           "SCHO": 13.50, "SCHP": 9.00, "VCSH": 3.00, "BKLN": 4.50, "IAU": 5.50, "SIVR": 2.00, "CASH": 4.57}
+PROPOSED = {**_Z, "XLK": 24.0, "XLF": 5.37, "XLV": 7.13, "XLY": 5.00, "XLC": 5.50, "XLI": 5.71,
+            "XLP": 2.03, "XLE": 2.50, "XLU": 2.23, "XLRE": 2.50, "XLB": 1.03,
+            "IGSB": 14.36, "IBID": 5.76, "AGZ": 8.09, "VGIT": 6.79, "CASH": 2.00}
 GREEN, BLUE, GREY, GOLDC = "#27532a", "#4b7bb5", "#b5b5b5", "#c8a43a"
 
 
@@ -140,14 +147,17 @@ with st.sidebar:
         for f in FACTORS:
             df[f] = st.number_input(FLABEL[f], value=float(round(df[f], 1)), step=5.0, key=f"ov_{f}")
     st.header("Benchmark")
-    bench_eq = st.slider("Equity share of benchmark (%)", 0, 100, 63)
-    cash = st.number_input("Cash, held fixed (%)", 0.0, 20.0, 2.0, 0.5)
-    st.caption("Benchmark bonds follow the fund's current fixed income mix (edit on the Inputs tab).")
+    bmix = st.radio("Non-equity mix (bonds, metals) from", ["Team current", "Team proposed"], horizontal=True)
+    _ref = CURRENT if bmix == "Team current" else PROPOSED
+    bench_eq = st.slider("Equity share of benchmark (%)", 0, 100,
+                         int(round(sum(_ref[a] for a in SECTORS))), key=f"beq_{bmix}")
+    cash = st.number_input("Cash, held fixed (%)", 0.0, 20.0, float(_ref["CASH"]), 0.25, key=f"cash_{bmix}")
+    st.caption("Equity follows S&P 500 sector weights; bonds and metals follow the chosen team mix.")
     st.header("Risk limits (model)")
     te = st.slider("Tracking error budget vs benchmark (%)", 0.5, 6.0, 3.0, 0.5) / 100
     sec_band = st.slider("Max over/underweight per equity sector (pp of fund)", 1, 10, 3) / 100
     bond_band = st.slider("Max over/underweight per bond fund (pp of fund)", 1, 25, 10) / 100
-    gold_max = st.slider("Max gold (% of fund)", 0, 15, 5) / 100
+    gold_max = st.slider("Max per metal: gold, silver (% of fund)", 0, 15, 6) / 100
     eq_rng = st.slider("Allowed equity share of fund (%)", 0, 100, (55, 75))
     floor = st.slider("Minimum weight per equity sector (% of fund)", 0.0, 2.0, 0.0, 0.25) / 100
     with st.expander("Model settings"):
@@ -159,11 +169,12 @@ with st.sidebar:
 tab_w, tab_s, tab_in = st.tabs(["Model weights", "Sharpe ratio calculator", "Inputs"])
 
 with tab_in:
-    st.write("S&P 500 column: % of the equity sleeve. Team columns: % of the whole fund (cash is set in the sidebar).")
-    base = pd.DataFrame({"Asset": [NAMES[a] for a in ASSETS],
-                         "S&P 500 (equity sleeve)": [SP500.get(a, np.nan) for a in ASSETS],
-                         "Team current (fund)": [CURRENT[a] for a in ASSETS],
-                         "Team proposed (fund)": [PROPOSED[a] for a in ASSETS]}, index=ASSETS)
+    st.write("S&P 500 column: % of the equity sleeve. Team columns: % of the whole fund including cash (each sums to 100).")
+    _A = ASSETS + ["CASH"]
+    base = pd.DataFrame({"Asset": [NAMES[a] for a in _A],
+                         "S&P 500 (equity sleeve)": [SP500.get(a, np.nan) for a in _A],
+                         "Team current (fund)": [CURRENT[a] for a in _A],
+                         "Team proposed (fund)": [PROPOSED[a] for a in _A]}, index=_A)
     ed = st.data_editor(base, disabled=["Asset"], width="stretch", key="weights_editor")
     st.subheader("Factor moves used")
     st.dataframe(pd.DataFrame({"Factor": [FLABEL[f] for f in FACTORS],
@@ -176,18 +187,21 @@ with tab_in:
 invest = (100 - cash) / 100
 sp = ed["S&P 500 (equity sleeve)"].reindex(SECTORS).astype(float)
 sp = sp / sp.sum()
-cb = ed["Team current (fund)"].reindex(BONDS).astype(float).fillna(0)
-cb = cb / cb.sum() if cb.sum() > 0 else pd.Series(1 / len(BONDS), BONDS)
+NE = BONDS + GOLD
+cb = ed[f"{bmix} (fund)"].reindex(NE).astype(float).fillna(0)
+cb = cb / cb.sum() if cb.sum() > 0 else pd.Series(1 / len(NE), NE)
 eq_b = min(bench_eq / 100, invest)
-wb = pd.concat([sp * eq_b, cb * (invest - eq_b), pd.Series({"IAU": 0.0})]).reindex(ASSETS)
+wb = pd.concat([sp * eq_b, cb * (invest - eq_b)]).reindex(ASSETS)
 
 
 def fund(col):
-    s = ed[col].reindex(ASSETS).astype(float).fillna(0)
-    return s / s.sum() * invest
+    """Team weights as fractions of the fund (cash is the leftover)."""
+    s = ed[col].reindex(ASSETS + ["CASH"]).astype(float).fillna(0)
+    s = s / s.sum()
+    return s[ASSETS], float(s["CASH"])
 
 
-cur, prop = fund("Team current (fund)"), fund("Team proposed (fund)")
+(cur, cash_cur), (prop, cash_prop) = fund("Team current (fund)"), fund("Team proposed (fund)")
 Sig, pi, mu, shock, vsd, conf = black_litterman(B, B26, V, Om, D, grid, meta, wb, df, delta, tau, use_scen, use_drift)
 w, ok = optimize(mu, Sig, wb, delta, te, sec_band, bond_band, gold_max, eq_rng[0] / 100, eq_rng[1] / 100, floor)
 te_of = lambda x: 100 * float(np.sqrt((x - wb) @ Sig.values @ (x - wb)))
@@ -220,10 +234,13 @@ with tab_w:
     st.altair_chart(grouped_bars(long, order, "Over/underweight vs benchmark (pp of fund)", 680), width="stretch")
     tbl = tbl.set_index("Asset").loc[order].reset_index()
     cols = tbl.columns[1:]
+    nb = len(BONDS)
+    cashrow = {"Benchmark": cash, "Model": cash, "Model vs benchmark (pp)": 0.0,
+               "Team current": 100 * cash_cur, "Team proposed": 100 * cash_prop}
     tot = pd.DataFrame([{"Asset": "Total equity", **{k: tbl.iloc[:11][k].sum() for k in cols}},
-                        {"Asset": "Total fixed income", **{k: tbl.iloc[11:17][k].sum() for k in cols}},
-                        {"Asset": "Gold", **{k: tbl.iloc[17][k] for k in cols}},
-                        {"Asset": "Cash", **{k: (cash if k != "Model vs benchmark (pp)" else 0.0) for k in cols}}])
+                        {"Asset": "Total fixed income", **{k: tbl.iloc[11:11 + nb][k].sum() for k in cols}},
+                        {"Asset": "Total metals", **{k: tbl.iloc[11 + nb:][k].sum() for k in cols}},
+                        {"Asset": "Cash", **cashrow}])
     full = pd.concat([tbl, tot], ignore_index=True)
     st.dataframe(full.round(2), hide_index=True, width="stretch")
     st.download_button("Download weights (CSV)", full.round(3).to_csv(index=False), "portfolio_weights.csv")
@@ -254,17 +271,17 @@ with tab_w:
         "Posterior excess return (%)": 100 * mu}).round(2), hide_index=True, width="stretch")
     with st.expander("How this works"):
         st.markdown(
-            "- **Benchmark (prior):** S&P 500 sector weights for the equity share, the fund's current fixed "
-            "income mix for the rest, no gold, cash fixed. It implies equilibrium returns, pi = delta x Sigma x w.\n"
+            "- **Benchmark (prior):** S&P 500 sector weights for the equity share, the chosen team's bond and "
+            "metals mix for the rest, cash fixed. It implies equilibrium returns, pi = delta x Sigma x w.\n"
             "- **Risk (Sigma):** factor model, B x factor covariance x B' + each asset's own variance, from "
             "daily data Jan 2022 - Oct 2026.\n"
             "- **Views:** each asset's factor betas x the factor moves the inflation model gives for the "
-            "chosen oil price and Fed rule. Bonds react through duration, gold mainly through real yields "
-            "and the dollar.\n"
+            "chosen oil price and Fed rule. Bonds react through duration (BKLN mostly credit), gold "
+            "and silver mainly through real yields and the dollar.\n"
             "- **Confidence:** beta standard errors, the spread of each view across 8 oil/Fed scenarios, and "
             "2026 beta drift. Nothing is set by hand.\n"
             "- **Weights:** maximize expected return minus delta/2 x variance within the tracking-error budget, "
-            "per-asset bands, the gold cap and the allowed equity range, long only.")
+            "per-asset bands, the metals cap and the allowed equity range, long only.")
 
 # ---------------------------------------------------------------- Sharpe calculator
 with tab_s:
@@ -280,19 +297,21 @@ with tab_s:
     rf = c[2].number_input("Risk-free rate (%)", 0.0, 10.0, float(meta.get("rf_default", 3.9)), 0.05) / 100
 
     ALL = ASSETS + ["CASH"]
-    presets = {"Team proposed": prop, "Team current": cur, "Model": w, "Benchmark": wb}
+    presets = {"Team current": (cur, 100 * cash_cur), "Team proposed": (prop, 100 * cash_prop),
+               "Model": (w, cash), "Benchmark": (wb, cash)}
     pc = st.columns(len(presets))
-    for (nm, x), col in zip(presets.items(), pc):
+    for (nm, (x, cs)), col in zip(presets.items(), pc):
         if col.button(f"Load {nm.lower()}", width="stretch"):
-            st.session_state["sharpe_w"] = {**{a: round(100 * float(x[a]), 2) for a in ASSETS}, "CASH": cash}
+            st.session_state["sharpe_w"] = {**{a: round(100 * float(x[a]), 2) for a in ASSETS}, "CASH": round(cs, 2)}
             st.session_state.pop("sharpe_editor", None)
-    start = st.session_state.get("sharpe_w", {**{a: round(100 * float(prop[a]), 2) for a in ASSETS}, "CASH": cash})
+    start = st.session_state.get("sharpe_w", {**{a: round(100 * float(cur[a]), 2) for a in ASSETS},
+                                              "CASH": round(100 * cash_cur, 2)})
     wt = pd.DataFrame({"Asset class": [GROUP[a] for a in ALL], "Holding": [NAMES[a] for a in ALL],
                        "Weight (%)": [start[a] for a in ALL]}, index=ALL)
     left, right = st.columns([1.05, 1])
     with left:
         st.markdown("**Your weights (% of fund)**")
-        wt = st.data_editor(wt, disabled=["Asset class", "Holding"], width="stretch", height=740,
+        wt = st.data_editor(wt, disabled=["Asset class", "Holding"], width="stretch", height=920,
                             key="sharpe_editor",
                             column_config={"Weight (%)": st.column_config.NumberColumn(min_value=0.0, max_value=100.0,
                                                                                         step=0.25, format="%.2f")})
@@ -331,11 +350,11 @@ with tab_s:
         st.dataframe(pd.DataFrame({"Asset class": grp.index, "Weight (%)": grp.values}).round(2),
                      hide_index=True, width="stretch")
         comp = []
-        for nm, x in [("Your weights", uw), ("Model", w), ("Benchmark", wb), ("Team proposed", prop),
-                      ("Team current", cur)]:
+        for nm, x, cs in [("Your weights", uw, None), ("Model", w, cash / 100), ("Benchmark", wb, cash / 100),
+                          ("Team current", cur, cash_cur), ("Team proposed", prop, cash_prop)]:
             x = x.reindex(ALL).fillna(0)
-            if nm != "Your weights":
-                x["CASH"] = cash / 100
+            if cs is not None:
+                x["CASH"] = cs
             e_, v_, s_ = stats(x)
             comp.append({"Portfolio": nm, "Expected return (%)": 100 * e_, "Volatility (%)": 100 * v_,
                          "Sharpe ratio": s_})
@@ -369,4 +388,4 @@ with tab_s:
     st.dataframe(one.round(2), hide_index=True, width="stretch")
     st.caption("Historical returns: equity ETFs are price returns (dividends of about 1-3% a year are not "
                "included, so equity Sharpe ratios are slightly understated). Bond funds include an estimated "
-               "yield carry. IBID data starts Sep 2023. Model returns cover the macro view only.")
+               "yield carry. IBID data starts Sep 2023. VGIT, long Treasuries and 10y TIPS are built from Treasury yields. Model returns cover the macro view only.")
