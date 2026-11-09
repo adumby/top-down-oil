@@ -1,0 +1,22 @@
+{
+ "origin": {
+  "brent": 114.16,
+  "T10YIEM": 2.35,
+  "GS2": 4.65,
+  "FII10": 2.64,
+  "month": "2026-09"
+ },
+ "ff12_per_2y": 1.181,
+ "units": {
+  "oil": "daily % log change in WTI",
+  "real": "bp change, 10y TIPS (DFII10)",
+  "ff12": "bp change, 12m-ahead fed funds futures",
+  "be": "bp change, 10y breakeven (T10YIE)",
+  "term": "bp change, 10y-2y (T10Y2Y)",
+  "hy": "bp change, ICE BofA HY OAS",
+  "usd": "daily % log change, broad dollar (DTWEXBGS)",
+  "epu": "change in 7-day avg log policy uncertainty x100"
+ },
+ "estimation": "daily, 2022-01-03 to 2025-12-31, OLS with HAC(5) SEs; sector returns are daily log % returns of SPDR sector ETFs",
+ "horizon": "Sep-2026 to Sep-2027"
+}
